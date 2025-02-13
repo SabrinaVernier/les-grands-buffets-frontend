@@ -1,0 +1,37 @@
+@import './base.css';
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --white: #ffffff;
+  --orange: #d36700;
+  --orange-button: #d2691e;
+  --grey-green: #2f4f4f;
+  --light-grey: #f8f9fa;
+  --grey: #666666;
+  --black: #010101;
+  --header-top-height: 70px;
+  --header-bottom-height: 138px;
+}
+
+body {
+  font-family: BrandonGrotesqueBold, sans-serif;
+  font-size: 14px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  /* border: 1px solid green; */
+}
+
+main {
+  margin-top: calc(var(--header-top-height) + var(--header-bottom-height));
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}

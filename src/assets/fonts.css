@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'BrandonGrotesqueBold';
+  src: url('../assets/FONTS/BrandonGrotesqueBold.eot');
+  src:
+    url('../assets/FONTS/BrandonGrotesqueBold.eot?#iefix') format('embedded-opentype'),
+    url('../assets/FONTS/BrandonGrotesqueBold.woff2') format('woff2'),
+    url('../assets/FONTS/BrandonGrotesqueBold.woff') format('woff'),
+    url('../assets/FONTS/BrandonGrotesqueBold.ttf') format('truetype'),
+    url('../assets/FONTS/BrandonGrotesqueBold.svg#BrandonGrotesqueBold') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BrandonGrotesqueLight';
+  src: url('../assets/FONTS/BrandonGrotesqueLight.eot');
+  src:
+    url('../assets/FONTS/BrandonGrotesqueLight.eot?#iefix') format('embedded-opentype'),
+    url('../assets/FONTS/BrandonGrotesqueLight.woff2') format('woff2'),
+    url('../assets/FONTS/BrandonGrotesqueLight.woff') format('woff'),
+    url('../assets/FONTS/BrandonGrotesqueLight.ttf') format('truetype'),
+    url('../assets/FONTS/BrandonGrotesqueLight.svg#BrandonGrotesqueLight') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ThirstyRoughRegular';
+  src: url('../assets/FONTS/ThirstyRoughRegular.eot');
+  src:
+    url('../assets/FONTS/ThirstyRoughRegular.eot?#iefix') format('embedded-opentype'),
+    url('../assets/FONTS/ThirstyRoughRegular.woff2') format('woff2'),
+    url('../assets/FONTS/ThirstyRoughRegular.woff') format('woff'),
+    url('../assets/FONTS/ThirstyRoughRegular.ttf') format('truetype'),
+    url('../assets/FONTS/ThirstyRoughRegular.svg#ThirstyRoughRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
