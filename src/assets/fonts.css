@@ -39,3 +39,17 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'FengardoNeue_Black';
+  src: url('../assets/FONTS/FengardoNeue_Black.eot');
+  src:
+    url('../assets/FONTS/FengardoNeue_Black.eot?#iefix') format('embedded-opentype'),
+    url('../assets/FONTS/FengardoNeue_Black.woff2') format('woff2'),
+    url('../assets/FONTS/FengardoNeue_Black.woff') format('woff'),
+    url('../assets/FONTS/FengardoNeue_Black.ttf') format('truetype'),
+    url('../assets/FONTS/FengardoNeue_Black.svg#FengardoNeue_Black') format('svg');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}

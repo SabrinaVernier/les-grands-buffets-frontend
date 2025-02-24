@@ -1,9 +1,21 @@
 <script setup>
+import { ref } from 'vue'
+
+import { RouterLink } from 'vue-router'
+
+import Header from '@/components/HeaderHeader.vue'
+
+const email = ref('')
+const password = ref('')
+const name = ref('')
+
 const handleSubmit = () => {
   console.log('submit')
 }
 </script>
 <template>
+  <Header />
+
   <main>
     <div class="wrapper">
       <form action="login" @submit.prevent="handleSubmit">
@@ -21,6 +33,12 @@ const handleSubmit = () => {
         <div class="button">
           <button class="cancel-button">ANNULER</button>
           <button>CRÉATION COMPTE</button>
+        </div>
+        <div>
+          <p>Si vous avez déjà un compte, connectez-vous ici !</p>
+          <RouterLink :to="{ name: 'login' }">
+            <p>Connexion à votre compte</p>
+          </RouterLink>
         </div>
       </form>
     </div>

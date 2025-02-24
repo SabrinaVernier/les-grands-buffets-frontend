@@ -1,9 +1,14 @@
 <!-- eslint-disable no-undef -->
 <script setup>
 import { ref, inject } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter, useRoute } from 'vue-router'
 
 import axios from 'axios'
+
+import Header from '@/components/HeaderHeader.vue'
+
+const router = useRouter()
+const route = useRoute()
 
 const GlobalStore = inject('GlobalStore')
 // console.log(GlobalStore.connectedUser.value)
@@ -19,20 +24,29 @@ const handleSubmit = async () => {
       password: password.value,
     })
 
-    // console.log('data login>>>', data.user.username)
+    // console.log('data login>>>', data.user)
     jwt.value = data.jwt
     // console.log('jwt login>>>', jwt.value)
 
-    GlobalStore.updateInfos({ username: data.user.username, jwt: data.jwt, id: data.user.id })
+    GlobalStore.updateInfos({
+      username: data.user.username,
+      jwt: data.jwt,
+      id: data.user.id,
+      email: data.user.email,
+    })
 
-    // console.log('connectedUser>>>', GlobalStore.connectedUser.value)
+    console.log('connectedUser>>>', GlobalStore.connectedUser.value)
     $cookies.set('loginInfos', GlobalStore.connectedUser.value)
+
+    router.push({ name: route.query.redirect || 'home' })
   } catch (error) {
     console.log('login catch error>>>', error)
   }
 }
 </script>
 <template>
+  <Header />
+
   <main>
     <div class="wrapper">
       <form action="login" @submit.prevent="handleSubmit">

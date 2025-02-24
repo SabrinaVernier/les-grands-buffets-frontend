@@ -2,8 +2,16 @@
 import { RouterLink } from 'vue-router'
 import { inject } from 'vue'
 
+import TranslateArea from './TranslateArea.vue'
+
 const GlobalStore = inject('GlobalStore')
 console.log('header>>>', GlobalStore.connectedUser.value)
+
+const deconnectUser = () => {
+  // eslint-disable-next-line no-undef
+  $cookies.remove('loginInfos')
+  GlobalStore.connectedUser.value = null
+}
 </script>
 
 <template>
@@ -11,8 +19,10 @@ console.log('header>>>', GlobalStore.connectedUser.value)
     <section class="header-top">
       <div class="container">
         <nav>
-          <font-awesome-icon :icon="['far', 'calendar-alt']" />
-          <p>RÉSERVER EN LIGNE</p>
+          <RouterLink :to="{ name: 'booking' }">
+            <font-awesome-icon :icon="['far', 'calendar-alt']" />
+            <p>RÉSERVER EN LIGNE</p>
+          </RouterLink>
         </nav>
 
         <nav>
@@ -34,6 +44,7 @@ console.log('header>>>', GlobalStore.connectedUser.value)
         <div class="connectedUser" v-if="GlobalStore.connectedUser.value">
           <p>Bonjour</p>
           <p>{{ GlobalStore.connectedUser.value.username }}</p>
+          <p class="deconnection" @click="deconnectUser">déconnexion</p>
         </div>
       </div>
     </section>
@@ -46,7 +57,7 @@ console.log('header>>>', GlobalStore.connectedUser.value)
 
         <div class="infos">
           <font-awesome-icon :icon="['fas', 'home']" />
-          <h3>RESTAURANT</h3>
+          <h3><RouterLink :to="{ name: 'ambiences' }">RESTAURANT</RouterLink></h3>
           <h3>GALERIE</h3>
           <RouterLink :to="{ name: 'login' }"><h3>MON COMPTE</h3></RouterLink>
           <h3>ILS EN PARLENT</h3>
@@ -55,11 +66,7 @@ console.log('header>>>', GlobalStore.connectedUser.value)
         </div>
 
         <div class="language">
-          <font-awesome-icon :icon="['fas', 'search']" />
-          <div>
-            <img src="../assets/IMGS/fr.png" alt="drapeau français" />
-            <p>FRANÇAIS <font-awesome-icon :icon="['fas', 'caret-down']" /></p>
-          </div>
+          <TranslateArea />
         </div>
       </div>
     </section>
@@ -72,6 +79,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1;
 }
 
 /* ---header-top-------------------- */
@@ -111,6 +119,12 @@ header {
   color: var(--white);
   font-size: 40px;
 }
+/* --deconnection--- */
+.header-top .deconnection {
+  color: white;
+  font-size: 12px;
+  margin-top: 10px;
+}
 
 /* ---header-bottom------------------ */
 .header-bottom {
@@ -149,32 +163,15 @@ header {
   /* border: 1px solid white; */
 }
 
-.header-bottom .language > svg {
-  color: var(--orange);
-  margin: 10px 20px 0 0;
-  font-size: 20px;
-}
-/* .language img {
-  height: 10px;
-} */
 .language {
-  border: 1px solid white;
-  display: flex;
   position: absolute;
   right: 0px;
+  top: 10px;
 }
 
-.language > div {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  padding: 0 0 10px 20px;
-}
-.language > div p {
+.infos a {
+  text-decoration: none;
   color: white;
-  font-family: BrandonGrotesqueLight, sans-serif;
-  font-size: 11px;
-  letter-spacing: 3px;
 }
 
 /* ---user----------- */

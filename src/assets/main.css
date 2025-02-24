@@ -6,10 +6,13 @@
 
 :root {
   --white: #ffffff;
+  --light-mustard: #fbe9c2;
+  --mustard: #c89d3e;
   --orange: #d36700;
   --orange-button: #d2691e;
   --grey-green: #2f4f4f;
-  --light-grey: #f8f9fa;
+  --light-grey: #cececf;
+  --middle-grey: #a3a2a2;
   --grey: #666666;
   --black: #010101;
   --header-top-height: 70px;

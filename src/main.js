@@ -17,7 +17,14 @@ import {
   faUserCircle,
 } from '@fortawesome/free-regular-svg-icons'
 
-import { faCaretDown, faHome, faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCaretDown,
+  faChevronLeft,
+  faChevronRight,
+  faHome,
+  faSearch,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons'
 
 import {
   faFacebookF,
@@ -42,6 +49,8 @@ library.add(
   faYoutube,
   faInstagram,
   faUser,
+  faChevronRight,
+  faChevronLeft,
 )
 
 const app = createApp(App)
