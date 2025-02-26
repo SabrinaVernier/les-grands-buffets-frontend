@@ -2,7 +2,7 @@
 import { RouterView } from 'vue-router'
 
 // import Header from '@/components/HeaderHeader.vue'
-import Footer from '@/components/FooterFooter.vue'
+// import Footer from '@/components/FooterFooter.vue'
 </script>
 
 <template>
@@ -10,7 +10,7 @@ import Footer from '@/components/FooterFooter.vue'
 
   <RouterView />
 
-  <Footer />
+  <!-- <Footer /> -->
 </template>
 
 <style scoped></style>

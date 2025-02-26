@@ -6,6 +6,7 @@ import { RouterLink, useRouter, useRoute } from 'vue-router'
 import axios from 'axios'
 
 import Header from '@/components/HeaderHeader.vue'
+import Footer from '@/components/FooterFooter.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -38,7 +39,7 @@ const handleSubmit = async () => {
     console.log('connectedUser>>>', GlobalStore.connectedUser.value)
     $cookies.set('loginInfos', GlobalStore.connectedUser.value)
 
-    router.push({ name: route.query.redirect || 'home' })
+    router.push({ path: route.query.redirect || '/' })
   } catch (error) {
     console.log('login catch error>>>', error)
   }
@@ -50,7 +51,7 @@ const handleSubmit = async () => {
   <main>
     <div class="wrapper">
       <form action="login" @submit.prevent="handleSubmit">
-        <h1>Connectez-vous à votre compte personnel MON COMPTE :</h1>
+        <h3>Connectez-vous à votre compte personnel MON COMPTE :</h3>
 
         <label for="email">Email</label>
         <input type="email" id="email" placeholder="votre email" v-model="email" />
@@ -71,6 +72,8 @@ const handleSubmit = async () => {
       </form>
     </div>
   </main>
+
+  <Footer />
 </template>
 <style scoped>
 main {

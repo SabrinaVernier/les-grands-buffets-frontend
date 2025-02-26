@@ -2,6 +2,7 @@
 import { RouterLink } from 'vue-router'
 
 import Header from '@/components/HeaderHeader.vue'
+import Footer from '@/components/FooterFooter.vue'
 </script>
 <template>
   <Header />
@@ -61,28 +62,18 @@ import Header from '@/components/HeaderHeader.vue'
       </button>
     </div>
   </main>
+
+  <Footer />
 </template>
 <style scoped>
 .container {
   padding: 20px 0 80px 0;
 }
-h1 {
-  font-family: 'ThirstyRoughRegular', serif;
-  font-size: 58px;
-  color: var(--grey);
-  padding: 20px 0px;
-  margin: 10px 0px;
-  border-bottom: 1px solid var(--middle-grey);
-}
 
 h2 {
-  font-size: 25px;
-  letter-spacing: 3px;
-  color: var(--orange);
   padding: 20px 0px;
   margin: 10px 0px;
   text-align: center;
-  border-bottom: 1px solid var(--middle-grey);
 }
 h3 {
   margin-top: 30px;
@@ -121,7 +112,7 @@ button:hover {
 a {
   font-size: 21px;
   line-height: 42px;
-  font-family: BrandonGrotesqueBold, serif;
+  font-family: 'BrandonGrotesqueBold', serif;
   color: white;
 }
 a:hover {

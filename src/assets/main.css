@@ -10,8 +10,10 @@
   --mustard: #c89d3e;
   --orange: #d36700;
   --orange-button: #d2691e;
+  --green: #25a073;
   --grey-green: #2f4f4f;
   --light-grey: #cececf;
+  --border-grey: #333;
   --middle-grey: #a3a2a2;
   --grey: #666666;
   --black: #010101;
@@ -20,7 +22,7 @@
 }
 
 body {
-  font-family: BrandonGrotesqueBold, sans-serif;
+  font-family: 'BrandonGrotesqueBold', sans-serif;
   font-size: 14px;
 }
 
@@ -35,6 +37,40 @@ main {
   min-height: 100vh;
 }
 
+h1 {
+  font-family: 'ThirstyRoughRegular', serif;
+  font-size: 58px;
+  line-height: 88px;
+  color: var(--grey);
+  padding: 20px 0px;
+  margin: 15px 0px;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+h2 {
+  font-size: 25px;
+  letter-spacing: 3px;
+  line-height: 50px;
+  color: var(--orange);
+  border-bottom: 1px solid var(--light-grey);
+  text-transform: uppercase;
+}
+
 a {
   text-decoration: none;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+/* ---loading-page-------- */
+
+main > div > .loading {
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 50px;
+  color: var(--orange);
 }

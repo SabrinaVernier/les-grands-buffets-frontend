@@ -38,12 +38,12 @@ const displayCelebrity = (infos) => {
       <div class="caroussel-big">
         <img class="img1" :src="cycleList.state.value" alt="caroussel personnage" />
         <div class="absolute-name" v-for="celebrity in celebrityArray" :key="celebrity">
-          <h1 v-if="cycleList.state.value === celebrity.url">
+          <h3 v-if="cycleList.state.value === celebrity.url">
             {{ celebrity.job === ' ' ? ' ' : celebrity.name }}
-          </h1>
-          <h2 v-if="cycleList.state.value === celebrity.url">
+          </h3>
+          <h4 v-if="cycleList.state.value === celebrity.url">
             {{ celebrity.job === ' ' ? ' ' : celebrity.job }}
-          </h2>
+          </h4>
         </div>
       </div>
 
@@ -107,7 +107,7 @@ svg {
   align-items: center;
   transform: skew(-10deg) rotate(-12deg);
 }
-.absolute-name h1 {
+.absolute-name h3 {
   color: white;
   font-size: 50px;
   font-family: 'ThirstyRoughRegular', serif;
@@ -115,7 +115,7 @@ svg {
   text-align: center;
 }
 
-.absolute-name h2 {
+.absolute-name h4 {
   color: var(--orange);
   font-size: 15px;
   font-family: 'BrandonGrotesqueLight', serif;

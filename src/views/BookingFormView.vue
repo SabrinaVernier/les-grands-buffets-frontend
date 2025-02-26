@@ -1,10 +1,12 @@
 <script setup>
-import { ref, inject, computed } from 'vue'
-import { RouterLink } from 'vue-router'
+import { ref, inject } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
 
 import axios from 'axios'
 
 const GlobalStore = inject('GlobalStore')
+
+const router = useRouter()
 
 // ---Réservation sur 1 mois: juin 2025----
 const minDate = '2025-06-01'
@@ -17,7 +19,7 @@ console.log('date du jour>>>', formatedTodayDate) // format: 2025-02-19
 console.log('date début réservation>>>', minDate) // format: 2025-06-01
 console.log('date fin réservation>>>', maxDate) // format: 2025-06-30
 
-//---réservation sur 1 an à partir de la date du jour --------
+//---réservation sur 1 an à partir de la date du jour --------computed à importer
 // const maxDate = computed(() => {
 //   const formatDate = minDate.split('-')
 //   formatDate.shift(0)
@@ -28,12 +30,15 @@ console.log('date fin réservation>>>', maxDate) // format: 2025-06-30
 
 const date = ref('')
 const dateId = ref(null)
-const numOfAdult = ref('')
-const numOfChild = ref('')
+const bookingDateInfos = ref(null)
+const numOfAdult = ref(1)
+const numOfChild = ref(0)
 const hour = ref('')
 const room = ref('')
 const name = ref(GlobalStore.connectedUser.value.username)
 const email = ref(GlobalStore.connectedUser.value.email)
+const isSubmitting = ref(false)
+const errorMessage = ref('')
 
 // ------recherche de l'Id sur la collection BookingDate à la sortie de l'input date---
 const searchDateId = async (selectedDate) => {
@@ -44,11 +49,12 @@ const searchDateId = async (selectedDate) => {
   const arrayOfDates = data.data
   // console.log('tableau de dates>>>', arrayOfDates)
 
-  const idBookingDate = arrayOfDates.find((element) => {
+  const bookingDate = arrayOfDates.find((element) => {
     return element.attributes.date === date.value
   })
-  console.log('idbookingdate>>>', idBookingDate)
-  dateId.value = idBookingDate.id
+  console.log('bookingdate place in room>>>', bookingDate)
+  bookingDateInfos.value = bookingDate
+  dateId.value = bookingDate.id
 }
 
 // -----affichage de la date au bon format----
@@ -57,43 +63,59 @@ const formatDate = (date) => {
   return formatedDate
 }
 
+// ---reset-input--------------------
+const handleInput = () => {
+  errorMessage.value = ''
+}
+
 // -------requête de soumission--------------
 const handleSubmit = async () => {
   console.log('is submitting')
+  isSubmitting.value = true
 
   const numberOfPlaces = numOfAdult.value + numOfChild.value
 
-  // console.log({
-  //   name: name.value,
-  //   email: email.value,
-  //   numberOfPlaces: numberOfPlaces,
-  //   date: date.value,
-  //   room: room.value,
-  //   owner: GlobalStore.connectedUser.value.id,
-  //   booking_date: dateId.value,
-  //   jwt: `Bearer ${GlobalStore.connectedUser.value.jwt}`,
-  // })
+  console.log('bookingdate place in room>>>', bookingDateInfos.value.attributes[room.value])
 
-  const { data } = await axios.post(
-    'http://localhost:1337/api/reservations?populate=*',
-    {
-      data: {
-        name: name.value,
-        email: email.value,
-        numberOfPlaces: numberOfPlaces,
-        date: date.value,
-        hour: hour.value,
-        room: room.value,
-        owner: GlobalStore.connectedUser.value.id,
-        booking_date: dateId.value,
+  if (bookingDateInfos.value.attributes[room.value] < numberOfPlaces) {
+    errorMessage.value =
+      "Il n'a pas assez de places dans cette salle pour le jour sélectionné. Veuillez choisir une autre salle ou une autre date"
+
+    isSubmitting.value = false
+    return errorMessage.value
+  } else {
+    const { data } = await axios.post(
+      'http://localhost:1337/api/reservations?populate=*',
+      {
+        data: {
+          name: name.value,
+          email: email.value,
+          numberOfPlaces: numberOfPlaces,
+          adult: numOfAdult.value,
+          child: numOfChild.value,
+          date: date.value,
+          hour: hour.value,
+          room: room.value,
+          owner: GlobalStore.connectedUser.value.id,
+          booking_date: dateId.value,
+        },
       },
-    },
-    {
-      headers: { Authorization: `Bearer ${GlobalStore.connectedUser.value.jwt}` },
-    },
-  )
-  console.log('data in form>>>>', data)
-  console.log('reservation submitted ')
+      {
+        headers: { Authorization: `Bearer ${GlobalStore.connectedUser.value.jwt}` },
+      },
+    )
+    console.log('data in form>>>>', data)
+    const idReservation = data.data.id
+    console.log('id reservation>>>', idReservation)
+
+    // alert(
+    //   `Votre réservation a bien été effectuée au nom de ${name.value} pour ${numOfAdult.value} adultes et ${numOfChild.value} enfants le ${formatDate(date.value)} à ${hour.value}, veuillez accéder au formaulaire de paiement en ligne`,
+    // )
+    isSubmitting.value = false
+    console.log('params >>>', { id: idReservation })
+
+    router.push({ name: 'payment', params: { id: idReservation } })
+  }
 }
 </script>
 <template>
@@ -114,6 +136,7 @@ const handleSubmit = async () => {
             v-model="date"
             :min="minDate"
             :max="maxDate"
+            @input="handleInput"
             @focusout="searchDateId(date)"
           />
           <span v-if="date">=> Date sélectionnée : {{ formatDate(date) }}</span>
@@ -122,9 +145,9 @@ const handleSubmit = async () => {
         <div class="person">
           <p>NOMBRE DE PARTICIPANTS</p>
           <label for="participant">Adulte</label> :
-          <input type="number" id="participant" v-model="numOfAdult" min="1" />
+          <input type="number" id="participant" v-model="numOfAdult" min="1" value="1" />
           <label for="participant">Enfant -10ans</label> :
-          <input type="number" id="participant" v-model="numOfChild" />
+          <input type="number" id="participant" v-model="numOfChild" min="0" value="0" />
         </div>
 
         <div>
@@ -156,34 +179,76 @@ const handleSubmit = async () => {
           <div class="display-section">
             <section>
               <div>
-                <input type="radio" id="fontaine" v-model="room" name="room" value="fontaine" />
+                <input
+                  type="radio"
+                  id="fontaine"
+                  v-model="room"
+                  name="room"
+                  value="fontaine"
+                  @input="handleInput"
+                />
                 <label for="fontaine">Salle Dorée Jean de La Fontaine</label>
               </div>
 
               <div>
-                <input type="radio" id="nolin" v-model="room" name="room" value="nolin" />
+                <input
+                  type="radio"
+                  id="nolin"
+                  v-model="room"
+                  name="room"
+                  value="nolin"
+                  @input="handleInput"
+                />
                 <label for="nolin">Tente d'Apparat de J.B Nolin</label>
               </div>
 
               <div>
-                <input type="radio" id="carrington" v-model="room" name="room" value="carrington" />
+                <input
+                  type="radio"
+                  id="carrington"
+                  v-model="room"
+                  name="room"
+                  value="carrington"
+                  @input="handleInput"
+                />
                 <label for="carrington">Salle Ann Carrington</label>
               </div>
             </section>
 
             <section>
               <div>
-                <input type="radio" id="verrier" v-model="room" name="room" value="verrier" />
+                <input
+                  type="radio"
+                  id="verrier"
+                  v-model="room"
+                  name="room"
+                  value="verrier"
+                  @input="handleInput"
+                />
                 <label for="verrier">Salle Max Le Verrier</label>
               </div>
 
               <div>
-                <input type="radio" id="rosa" v-model="room" name="room" value="rosa" />
+                <input
+                  type="radio"
+                  id="rosa"
+                  v-model="room"
+                  name="room"
+                  value="rosa"
+                  @input="handleInput"
+                />
                 <label for="rosa">Le Jardin Hervé di Rosa</label>
               </div>
 
               <div>
-                <input type="radio" id="private" v-model="room" name="room" value="private" />
+                <input
+                  type="radio"
+                  id="private"
+                  v-model="room"
+                  name="room"
+                  value="private"
+                  @input="handleInput"
+                />
                 <label for="private">Salle à manger privée</label>
               </div>
             </section>
@@ -203,7 +268,11 @@ const handleSubmit = async () => {
           </div>
         </div>
 
-        <button>Valider</button>
+        <button v-if="!isSubmitting && !errorMessage">Valider</button>
+        <div v-else>
+          <p v-if="!errorMessage">Réservation en cours...</p>
+          <p class="error-message" v-else>{{ errorMessage }}</p>
+        </div>
       </form>
     </div>
   </main>
@@ -300,5 +369,13 @@ button:hover {
   border: 4px var(--mustard) groove;
   font-size: 20px;
   border-radius: 15px;
+}
+
+/* ---error----- */
+.error-message {
+  font-size: 18px;
+  color: red;
+  font-weight: 100;
+  font-style: italic;
 }
 </style>

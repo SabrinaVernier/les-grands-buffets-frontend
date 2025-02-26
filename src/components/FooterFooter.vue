@@ -48,9 +48,15 @@ import { RouterLink } from 'vue-router'
         <div class="tripadvisor">
           <div>
             <p class="underline">Les Grands Buffets</p>
-            <div>
-              <p>0 0 0 0 0</p>
-              <p class="view">12 292 avis</p>
+            <div class="opinion">
+              <p>
+                <font-awesome-icon :icon="['fas', 'circle']" />
+                <font-awesome-icon :icon="['fas', 'circle']" />
+                <font-awesome-icon :icon="['fas', 'circle']" />
+                <font-awesome-icon :icon="['fas', 'circle']" />
+                <font-awesome-icon :icon="['fas', 'adjust']" />
+              </p>
+              <p class="view">12 310 avis</p>
             </div>
 
             <img
@@ -85,7 +91,7 @@ import { RouterLink } from 'vue-router'
 /* A généraliser sur tout le site */
 footer {
   background-color: var(--black);
-  padding: 40px 0;
+  padding: 40px 0 20px;
   /* position: fixed;
   bottom: 0;
   width: 100%; */
@@ -93,20 +99,24 @@ footer {
 
 /* ---footer-top----------------- */
 .footer-top {
-  height: 300px;
-  padding: 10px 0 20px 0;
+  height: 270px;
+  padding: 10px 0 0 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-grey);
 }
 .footer-top .container {
   height: 100%;
   display: flex;
+  height: fit-content;
 }
 .footer-top .container > div {
   width: 250px;
   margin-right: 25px;
   padding-right: 15px;
+  padding-bottom: 15px;
 }
 .footer-top .container .div-border {
-  border-right: 1px solid var(--grey);
+  border-right: 1px solid var(--border-grey);
 }
 .footer-top .container .div-border:first-child > div {
   display: flex;
@@ -117,7 +127,7 @@ footer {
 .footer-top .container .address > div {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
   align-items: flex-start;
 }
 .footer-top h3 {
@@ -127,21 +137,28 @@ footer {
   margin-bottom: 40px;
 }
 .footer-top h4 {
-  color: white;
+  color: var(--white);
   font-size: 12px;
+  letter-spacing: 1px;
 }
 .footer-top p {
   color: var(--grey);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
+  line-height: 16px;
 }
 .footer-top span {
   color: white;
+  letter-spacing: 1px;
 }
 button {
-  font-size: 16px;
-  font-family: BrandonGrotesqueBold, sans-serif;
+  font-size: 13px;
+  font-family: 'BrandonGrotesqueBold', sans-serif;
   color: var(--orange);
+  background-color: var(--black);
+  border: 1px solid var(--orange);
+  padding: 5px 20px;
+  letter-spacing: 1px;
 }
 
 .footer-top .address svg {
@@ -151,24 +168,23 @@ button {
 .footer-top .address nav,
 .footer-top .address nav a {
   display: flex;
-  gap: 15px;
+  gap: 10px;
   align-items: center;
 }
+/* ---tripadvisor--- */
 .tripadvisor > div {
-  border: 1px solid white;
+  border: 2px solid var(--green);
   background-color: #fff;
-  padding: 10px;
+  padding: 5px;
   height: 100px;
   width: 160px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 }
 .tripadvisor img {
   height: 25px;
-
-  border: 1px solid white;
   object-fit: contain;
 }
 .tripadvisor .underline {
@@ -179,6 +195,18 @@ button {
 }
 .tripadvisor .view {
   font-size: 11px;
+}
+.opinion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.opinion svg {
+  color: var(--green);
+  height: 10px;
+}
+.opinion svg:not(:last-of-type) {
+  margin-right: 1px;
 }
 /* ---footer-bottom------------- */
 .footer-bottom {
@@ -191,16 +219,30 @@ button {
 }
 .footer-bottom .container > div {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer-bottom .container > div:last-child {
   gap: 10px;
 }
 .footer-bottom nav svg {
   color: var(--grey);
+  border: 2px solid var(--grey);
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  padding: 5px;
 }
 .footer-bottom p {
   color: var(--grey);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
-
-  border-right: 1px solid var(--grey);
+  letter-spacing: 0.2px;
+  height: fit-content;
+  padding: 0 5px 2px 5px;
+  /* border: 1px solid red; */
+}
+.footer-bottom p:not(:last-of-type) {
+  border-right: 1px solid var(--border-grey);
 }
 </style>

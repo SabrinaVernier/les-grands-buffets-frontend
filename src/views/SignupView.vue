@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import Header from '@/components/HeaderHeader.vue'
+import Footer from '@/components/FooterFooter.vue'
 
 const email = ref('')
 const password = ref('')
@@ -43,6 +44,8 @@ const handleSubmit = () => {
       </form>
     </div>
   </main>
+
+  <Footer />
 </template>
 <style scoped>
 main {

@@ -51,18 +51,18 @@ const deconnectUser = () => {
 
     <section class="header-bottom">
       <div class="container">
-        <RouterLink :to="{ name: 'home' }">
+        <RouterLink :to="{ path: '/' }">
           <img class="img-logo" src="../assets/IMGS/logo-large.png" alt="logo-large" />
         </RouterLink>
 
         <div class="infos">
-          <font-awesome-icon :icon="['fas', 'home']" />
-          <h3><RouterLink :to="{ name: 'ambiences' }">RESTAURANT</RouterLink></h3>
-          <h3>GALERIE</h3>
-          <RouterLink :to="{ name: 'login' }"><h3>MON COMPTE</h3></RouterLink>
-          <h3>ILS EN PARLENT</h3>
-          <h3>DÉCOUVRIR</h3>
-          <h3>INFOS PRATIQUES</h3>
+          <RouterLink :to="{ path: '/' }"><font-awesome-icon :icon="['fas', 'home']" /></RouterLink>
+          <h3><RouterLink :to="{ path: '/ambiences' }">RESTAURANT</RouterLink></h3>
+          <h3><RouterLink :to="{ path: '/pictures' }">GALERIE</RouterLink></h3>
+          <RouterLink :to="{ path: '/login' }"><h3>MON COMPTE</h3></RouterLink>
+          <h3><RouterLink :to="{ path: '/comments' }">ILS EN PARLENT</RouterLink></h3>
+          <h3><RouterLink :to="{ path: '/experiences' }">DÉCOUVRIR</RouterLink></h3>
+          <h3><RouterLink :to="{ path: '/infos' }">INFOS PRATIQUES</RouterLink></h3>
         </div>
 
         <div class="language">
@@ -172,6 +172,18 @@ header {
 .infos a {
   text-decoration: none;
   color: white;
+}
+
+.infos h3:hover,
+.infos a:hover {
+  color: var(--orange);
+}
+.infos svg:hover {
+  color: var(--white);
+}
+.infos h3::selection,
+.infos a::selection {
+  color: var(--orange);
 }
 
 /* ---user----------- */

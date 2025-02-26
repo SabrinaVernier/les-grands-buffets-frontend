@@ -18,9 +18,11 @@ import {
 } from '@fortawesome/free-regular-svg-icons'
 
 import {
+  faAdjust,
   faCaretDown,
   faChevronLeft,
   faChevronRight,
+  faCircle,
   faHome,
   faSearch,
   faUser,
@@ -51,6 +53,8 @@ library.add(
   faUser,
   faChevronRight,
   faChevronLeft,
+  faCircle,
+  faAdjust,
 )
 
 const app = createApp(App)

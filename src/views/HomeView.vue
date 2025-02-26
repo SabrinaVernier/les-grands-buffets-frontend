@@ -2,6 +2,7 @@
 import CelibrityComment from '@/components/CelibrityComment.vue'
 
 import Header from '@/components/HeaderHeader.vue'
+import Footer from '@/components/FooterFooter.vue'
 </script>
 
 <template>
@@ -118,22 +119,13 @@ import Header from '@/components/HeaderHeader.vue'
       </div>
     </div>
   </main>
+
+  <Footer />
 </template>
 <style scoped>
-main h1 {
-  font-family: 'ThirstyRoughRegular', serif;
-  font-size: 58px;
-  color: var(--grey);
-  padding: 25px 0;
-  border-bottom: 1px solid var(--light-grey);
-}
 main h2 {
-  color: var(--orange);
-  font-size: 25px;
-  line-height: 50px;
-  letter-spacing: 2.5px;
   padding: 15px 0;
-  border-bottom: 1px solid var(--light-grey);
+  /* border-bottom: 1px solid var(--light-grey); */
 }
 
 main h3 {
