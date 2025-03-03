@@ -12,6 +12,7 @@ import PicturesView from '@/views/PicturesView.vue'
 import CommentsView from '@/views/CommentsView.vue'
 import ExperiencesView from '@/views/ExperiencesView.vue'
 import InfosView from '@/views/InfosView.vue'
+import GuinnessView from '@/views/GuinnessView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -65,6 +66,11 @@ const router = createRouter({
       meta: {
         requireAuth: true,
       },
+    },
+    {
+      path: '/guinness',
+      name: 'guinness',
+      component: GuinnessView,
     },
     {
       path: '/comments',

@@ -7,7 +7,15 @@ import Footer from '@/components/FooterFooter.vue'
 <template>
   <Header />
 
-  <main>
+  <main id="main-infos">
+    <div>
+      <img
+        src="../assets/IMGS/defaut_gd_buffets.jpg"
+        alt="Cuisine d'Auguste Escoffier"
+        class="first-img"
+      />
+    </div>
+
     <div class="container">
       <h1>Tarifs et Horaires</h1>
 
@@ -84,6 +92,9 @@ h3 {
   font-weight: bold;
   color: var(--orange);
   padding-top: 20px;
+}
+h2 {
+  padding-bottom: 10px;
 }
 
 p {

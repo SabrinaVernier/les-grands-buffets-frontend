@@ -1,0 +1,50 @@
+/* ---BREAKPOINT-700 (max-width: 700px); */
+
+body {
+  background-color: lightskyblue;
+}
+
+/* ------------------------------------- */
+
+/* ---HEADER----------------- */
+/* ---TOP--- */
+#header-top .bp-700 {
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+#header-top .translate {
+  position: absolute;
+  right: 0;
+}
+
+/* ---HOMEVIEW---------------- */
+
+/* ---CELEBRITY-COMMENT--- */
+#div-celebrity .celebrity-content {
+  padding-bottom: 20px;
+}
+#div-celebrity .img1 {
+  height: 311px;
+}
+#div-celebrity .absolute-name {
+  top: 20px;
+  right: -20px;
+}
+#div-celebrity .caroussel-small section {
+  width: calc(100% / 4);
+}
+
+/* ---BOOKINGVIEW------------- */
+
+/* ---BOOKINGFORM-VIEW-------- */
+
+/* ---PAYMENTVIEW------------- */
+/* ---LOGINVIEW--------------- */
+/* ---SIGNUPVIEW-------------- */
+/* ---AMBIENCESVIEW----------- */
+/* ---PICTURESVIEW------------ */
+/* ---COMMENTSVIEW------------ */
+/* ---EXPERIENCESVIEW--------- */
+/* ---GUINNESSVIEW------------ */
+/* ---INFOSVIEW--------------- */

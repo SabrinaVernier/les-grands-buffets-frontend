@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import './assets/main.css'
+import './assets/CSS/main.css'
 
 import { createApp, ref } from 'vue'
 import VueCookies from 'vue-cookies'
@@ -19,12 +19,15 @@ import {
 
 import {
   faAdjust,
+  faBars,
   faCaretDown,
   faChevronLeft,
   faChevronRight,
   faCircle,
   faHome,
   faSearch,
+  faSignOutAlt,
+  faTimes,
   faUser,
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -55,6 +58,9 @@ library.add(
   faChevronLeft,
   faCircle,
   faAdjust,
+  faSignOutAlt,
+  faBars,
+  faTimes,
 )
 
 const app = createApp(App)

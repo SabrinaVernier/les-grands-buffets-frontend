@@ -18,7 +18,7 @@ export const celebrityArray = [
   },
   {
     url: 'https://www.lesgrandsbuffets.com/sites/lesgrandsbuffets.com/files/styles/full_slider/public/field/home/slide/pierre_richard.jpg?itok=ZmGlZLyK',
-    name: 'PierreRichard',
+    name: 'Pierre Richard',
     job: 'Acteur',
   },
   {

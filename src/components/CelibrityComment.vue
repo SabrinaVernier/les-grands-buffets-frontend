@@ -33,7 +33,7 @@ const displayCelebrity = (infos) => {
 </script>
 
 <template>
-  <div class="div-celebrity">
+  <div class="div-celebrity" id="div-celebrity">
     <div class="celebrity-content container">
       <div class="caroussel-big">
         <img class="img1" :src="cycleList.state.value" alt="caroussel personnage" />
@@ -85,7 +85,6 @@ const displayCelebrity = (infos) => {
 
 svg {
   font-size: 50px;
-
   color: var(--grey);
 }
 
@@ -97,7 +96,7 @@ svg {
   height: 150px;
   width: 400px;
   position: absolute;
-  right: 100px;
+  right: 20px;
   top: 100px;
   /* border: 1px solid turquoise; */
   display: flex;

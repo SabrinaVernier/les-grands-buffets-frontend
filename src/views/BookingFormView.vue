@@ -127,7 +127,7 @@ const handleSubmit = async () => {
     </div>
     <div class="container">
       <form action="réservation" @submit.prevent="handleSubmit">
-        <h1>Formulaire de réservation</h1>
+        <h3>Formulaire de réservation</h3>
         <div>
           <label for="date">Date</label> :
           <input
@@ -293,7 +293,7 @@ const handleSubmit = async () => {
   justify-content: center;
   background-color: #fff;
 }
-h1 {
+h3 {
   align-self: center;
   font-size: 20px;
   font-weight: bold;

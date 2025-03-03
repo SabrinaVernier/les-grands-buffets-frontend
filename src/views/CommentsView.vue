@@ -22,7 +22,15 @@ onMounted(async () => {
 <template>
   <Header />
 
-  <main>
+  <main id="main-comments">
+    <div>
+      <img
+        src="../assets/IMGS/defaut_gd_buffets.jpg"
+        alt="Cuisine d'Auguste Escoffier"
+        class="first-img"
+      />
+    </div>
+
     <div class="container">
       <h1>Guides</h1>
 
@@ -47,22 +55,24 @@ onMounted(async () => {
 .div-guides {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   flex-wrap: wrap;
-  height: 1600px;
+  max-height: 1900px;
+  border-bottom: 1px solid var(--light-grey);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
 }
 .div-guides > div {
-  border: 1px solid var(--middle-grey);
-  flex-shrink: 1;
-  width: calc((100% - 20px) / 3);
+  /* border: 1px solid var(--middle-grey); */
+  box-shadow: 0 0 4px 2px var(--shadow-grey);
+  flex-shrink: 0;
+  width: calc((100% - 30px) / 3);
   height: fit-content;
 }
 .div-guides > div > div {
   padding: 20px;
 }
-/* img {
-  width: 100%;
-} */
+
 h3 {
   font-size: 18px;
   line-height: 21px;
@@ -74,5 +84,8 @@ p {
   color: var(--grey);
   line-height: 21px;
   padding: 10px 0;
+}
+.first-img {
+  width: 100%;
 }
 </style>

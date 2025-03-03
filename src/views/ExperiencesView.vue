@@ -5,12 +5,12 @@ import Footer from '@/components/FooterFooter.vue'
 <template>
   <Header />
 
-  <main>
+  <main id="main-experiences">
     <div>
       <h1 class="container">À Découvrir</h1>
 
       <ul class="first-ul">
-        <li>
+        <li class="arena">
           <h2 class="container">Narbonne Arena</h2>
           <div>
             <img src="../assets/IMGS/Z-Arena.jpg" alt="arena" />
@@ -41,7 +41,7 @@ import Footer from '@/components/FooterFooter.vue'
           </div>
         </li>
 
-        <li>
+        <li class="tourism">
           <h2 class="container">Office du tourisme</h2>
           <div>
             <img src="../assets/IMGS/Z-Office-tourisme.jpg" alt="office tourisme" />
@@ -101,7 +101,7 @@ import Footer from '@/components/FooterFooter.vue'
           </div>
         </li>
 
-        <li>
+        <li class="discovery">
           <h2 class="container">Escapade en pays Narbonnais</h2>
           <div>
             <img src="../assets/IMGS/Z-Chateau.jpg" alt="" />

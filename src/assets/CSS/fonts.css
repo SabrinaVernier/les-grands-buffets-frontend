@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'BrandonGrotesqueBold';
+  src: url('../FONTS/BrandonGrotesqueBold.eot');
+  src:
+    url('../FONTS/BrandonGrotesqueBold.eot?#iefix') format('embedded-opentype'),
+    url('../FONTS/BrandonGrotesqueBold.woff2') format('woff2'),
+    url('../FONTS/BrandonGrotesqueBold.woff') format('woff'),
+    url('../FONTS/BrandonGrotesqueBold.ttf') format('truetype'),
+    url('../FONTS/BrandonGrotesqueBold.svg#BrandonGrotesqueBold') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BrandonGrotesqueLight';
+  src: url('../FONTS/BrandonGrotesqueLight.eot');
+  src:
+    url('../FONTS/BrandonGrotesqueLight.eot?#iefix') format('embedded-opentype'),
+    url('../FONTS/BrandonGrotesqueLight.woff2') format('woff2'),
+    url('../FONTS/BrandonGrotesqueLight.woff') format('woff'),
+    url('../FONTS/BrandonGrotesqueLight.ttf') format('truetype'),
+    url('../FONTS/BrandonGrotesqueLight.svg#BrandonGrotesqueLight') format('svg');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ThirstyRoughRegular';
+  src: url('../FONTS/ThirstyRoughRegular.eot');
+  src:
+    url('../FONTS/ThirstyRoughRegular.eot?#iefix') format('embedded-opentype'),
+    url('../FONTS/ThirstyRoughRegular.woff2') format('woff2'),
+    url('../FONTS/ThirstyRoughRegular.woff') format('woff'),
+    url('../FONTS/ThirstyRoughRegular.ttf') format('truetype'),
+    url('../FONTS/ThirstyRoughRegular.svg#ThirstyRoughRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FengardoNeue_Black';
+  src: url('../FONTS/FengardoNeue_Black.eot');
+  src:
+    url('../FONTS/FengardoNeue_Black.eot?#iefix') format('embedded-opentype'),
+    url('../FONTS/FengardoNeue_Black.woff2') format('woff2'),
+    url('../FONTS/FengardoNeue_Black.woff') format('woff'),
+    url('../FONTS/FengardoNeue_Black.ttf') format('truetype'),
+    url('../FONTS/FengardoNeue_Black.svg#FengardoNeue_Black') format('svg');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,196 @@
+/* ---BREAKPOINT-975 (max-width: 975px); */
+
+body {
+  background-color: lightseagreen;
+}
+
+/* ------------------------------------- */
+/* ---HEADER----------------- */
+
+/* ---TOP--- */
+#header-top .bp-975 {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+#header-top .bp-975 svg {
+  color: var(--white);
+  height: 25px;
+  width: 25px;
+  margin-left: 20px;
+}
+
+#header-top .bp-975 .logo img {
+  width: 230px;
+}
+
+/* ---Nav deroulante--- */
+#header .noBorder {
+  border-bottom: none;
+}
+#header-top .list-display-click {
+  height: 400px;
+  width: 100%;
+  background-color: var(--black);
+  display: block;
+  position: absolute;
+  top: var(--header-top-height);
+}
+#header-top .list-display-click li {
+  height: 50px;
+  color: var(--white);
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 50px;
+  border-top: 1px solid var(--grey);
+}
+#header-top .list-display-click a {
+  color: var(--white);
+}
+#header-top .list-display-click a:hover,
+#header-top .list-display-click .router-link-exact-active {
+  color: var(--orange);
+}
+
+/* ---BOTTOM--- */
+#header-bottom {
+  height: 0;
+}
+header #hidden-975 {
+  display: none;
+}
+/* ---FOOTER----------------- */
+#footer-top {
+  height: fit-content;
+}
+#footer-top .container {
+  flex-wrap: wrap;
+  padding-bottom: unset;
+}
+#footer-top .container > div {
+  width: calc((100% - 40px) / 2);
+  min-height: 250px;
+  flex-shrink: 0;
+  padding-bottom: unset;
+  margin-bottom: 30px;
+}
+#footer-top .container > div:not(:first-of-type) {
+  margin-right: unset;
+  padding-right: unset;
+}
+#footer-top .container .div-border2 {
+  border: unset;
+}
+
+/* ---HOMEVIEW---------------- */
+#main-homeview .container {
+  padding: 10px;
+}
+
+#main-homeview .navigation {
+  flex-direction: column;
+  /* border: 1px solid blue; */
+  padding-top: unset;
+}
+#main-homeview .navigation > div {
+  margin-left: unset;
+  border-bottom: 1px solid var(--light-grey);
+  border-right: unset;
+  max-width: 100%;
+  /* border: 1px solid red; */
+  padding-bottom: 40px;
+}
+#main-homeview .navigation h4 {
+  margin-top: 20px;
+}
+#main-homeview .navigation > .booking,
+#main-homeview .navigation .booking-button {
+  margin-bottom: 20px;
+}
+#main-homeview .div-guinness {
+  height: 235px;
+  padding: 10px 0;
+}
+#main-homeview .guinness {
+  /* border: 1px solid white; */
+  width: 500px;
+}
+#main-homeview .guinness > p:last-child {
+  display: inline;
+}
+
+/* ---CELEBRITY-COMMENT--- */
+#div-celebrity .celebrity-content {
+  border-bottom: 15px solid var(--orange);
+}
+
+/* ---BOOKINGVIEW------------- */
+#main-booking .container {
+  padding: 10px;
+}
+
+/* ---BOOKINGFORM-VIEW-------- */
+/* nothing */
+
+/* ---PAYMENTVIEW------------- */
+
+/* a faire */
+
+/* ---LOGINVIEW--------------- */
+
+#main-login .wrapper {
+  max-width: 100vh;
+}
+#main-login form {
+  gap: 15px;
+  padding: 40px 20px;
+}
+
+/* ---SIGNUPVIEW-------------- */
+
+#main-signup .wrapper {
+  max-width: 100vh;
+}
+#main-signup form {
+  gap: 10px;
+  padding: 40px 20px;
+}
+
+/* ---AMBIENCESVIEW----------- */
+#main-ambiences h2,
+#main-ambiences h1 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* ---PICTURESVIEW------------ */
+/* nothing */
+
+/* ---COMMENTSVIEW------------ */
+#main-comments .div-guides {
+  max-height: 3000px;
+  gap: 20px;
+  width: 620px;
+  margin: 0 auto 40px auto;
+}
+#main-comments .div-guides > div {
+  width: calc((100% - 20px) / 2);
+}
+/* ---EXPERIENCESVIEW--------- */
+
+#main-experiences .container {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* ---GUINNESSVIEW------------ */
+/* ---INFOSVIEW--------------- */
+
+#main-infos .first-img {
+  width: 100%;
+}

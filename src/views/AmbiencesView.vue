@@ -22,7 +22,7 @@ onMounted(async () => {
 <template>
   <Header />
 
-  <main v-if="roomInfos">
+  <main v-if="roomInfos" id="main-ambiences">
     <img class="first-picture" src="../assets/IMGS/Jardin-ambiance-5.jpg" alt="image du jardin" />
 
     <div>

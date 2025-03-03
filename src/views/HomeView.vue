@@ -1,6 +1,7 @@
 <script setup>
-import CelibrityComment from '@/components/CelibrityComment.vue'
+import { RouterLink } from 'vue-router'
 
+import CelibrityComment from '@/components/CelibrityComment.vue'
 import Header from '@/components/HeaderHeader.vue'
 import Footer from '@/components/FooterFooter.vue'
 </script>
@@ -8,39 +9,44 @@ import Footer from '@/components/FooterFooter.vue'
 <template>
   <Header />
 
-  <main>
+  <main id="main-homeview">
     <div>
       <CelibrityComment />
       <div class="container">
         <section class="navigation">
-          <div>
+          <div class="news">
             <h4>ACTUALITÉS</h4>
-            <h5>30 Mai 2023</h5>
-            <h6>BAPTÊME DE LA ROSE "LES GRANDS BUFFETS DE FRANCE"</h6>
+            <h5>Édition 2023</h5>
+            <h6>LES GRANDS BUFFETS: BUFFETS GASTRONOMIQUES HAUT DE GAMME"</h6>
             <p>
-              <span>Les Grands Buffets</span> vont bientôt s'implanter dans tous les jardins de
-              France et du Monde.
+              L'édition 2023 du guide touristique Petit Futé Aude - Pays Cathare vient de sortir et
+              fait la part belle aux <span>Grands Buffets</span> : " Buffets gastronomiques haut de
+              gamme, vous allez vivre ...
             </p>
-            <p>LIRE LA SUITE</p>
-            <p>o o o o o</p>
+            <p>
+              <RouterLink :to="{ path: '/comments' }">LIRE LA SUITE</RouterLink>
+            </p>
           </div>
-          <div>
+          <div class="booking">
             <h4>RÉSERVATION EN LIGNE</h4>
             <p>
               <span>Réservez votre table aux Grands Buffets</span> directement à partir de notre
               site ! C’est rapide, pratique et en quelques clics votre réservation est passée. Vous
               recevez quelques minutes plus tard votre mail de confirmation.
             </p>
-            <button>RÉSERVER MAINTENANT</button>
+            <button class="booking-button">
+              <RouterLink :to="{ path: '/booking' }">RÉSERVER MAINTENANT</RouterLink>
+            </button>
           </div>
-          <div>
+          <div class="div-guinness">
             <h3>GUINNESS</h3>
-            <div class="guiness">
+            <div class="guinness">
               <p>LES GRANDS BUFFETS</p>
-              <p>LE PLUS GRAND PLATEAU DE</p>
-              <p>FROMAGES AU MONDE</p>
+              <p>LE PLUS GRAND PLATEAU DE FROMAGES AU MONDE</p>
             </div>
-            <button class="guiness-button">DÉCOUVREZ-LE</button>
+            <button class="guinness-button">
+              <RouterLink :to="{ path: '/guinness' }">DÉCOUVREZ-LE</RouterLink>
+            </button>
           </div>
         </section>
 
@@ -158,14 +164,14 @@ main p {
 /* ---navigation--------- */
 .navigation {
   border-bottom: 1px solid var(--light-grey);
-  height: 300px;
+  min-height: 300px;
   margin-bottom: 30px;
   padding: 20px 0 35px 0;
   display: flex;
 }
 .navigation > div {
   border-right: 1px solid var(--light-grey);
-  width: calc(100% / 3);
+  max-width: calc(100% / 3);
   padding: 10px 20px 20px 0;
   display: flex;
   flex-direction: column;
@@ -190,13 +196,24 @@ main p {
 .navigation p {
   line-height: 21px;
 }
-.guiness {
+a {
+  color: inherit;
+}
+.news a {
+  color: var(--orange);
+  text-decoration: underline;
+}
+.booking a,
+.guinness a {
+  color: var(--orange);
+}
+.guinness {
   font-size: 19px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.guiness p {
+.guinness p {
   font-family: 'FengardoNeue_Black', sans-serif;
   color: white;
   line-height: 21px;
@@ -213,9 +230,15 @@ button {
   letter-spacing: 1.5px;
   padding: 5px 20px;
 }
-.guiness-button {
+button:hover,
+.booking a:hover {
+  color: var(--white);
+  background-color: var(--orange);
+}
+.guinness-button {
   background-color: var(--black);
 }
+
 /* ---zone text------------- */
 .text > div > p:first-of-type {
   padding: 20px 0;

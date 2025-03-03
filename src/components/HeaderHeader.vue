@@ -1,11 +1,13 @@
 <script setup>
 import { RouterLink } from 'vue-router'
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 
 import TranslateArea from './TranslateArea.vue'
 
 const GlobalStore = inject('GlobalStore')
 console.log('header>>>', GlobalStore.connectedUser.value)
+
+const menuListOpen = ref(false)
 
 const deconnectUser = () => {
   // eslint-disable-next-line no-undef
@@ -15,9 +17,41 @@ const deconnectUser = () => {
 </script>
 
 <template>
-  <header>
-    <section class="header-top">
-      <div class="container">
+  <header id="header">
+    <section class="header-top" id="header-top" :class="{ noBorder: menuListOpen }">
+      <div class="bp-975 bp-700">
+        <div v-if="!menuListOpen" @click="menuListOpen = true">
+          <font-awesome-icon :icon="['fas', 'bars']" />
+        </div>
+
+        <div v-else>
+          <div @click="menuListOpen = false">
+            <font-awesome-icon :icon="['fas', 'times']" />
+          </div>
+          <div class="list-display-click">
+            <ul>
+              <li><RouterLink :to="{ path: '/' }">ACCUEIL</RouterLink></li>
+              <li><RouterLink :to="{ path: '/ambiences' }">RESTAURANT</RouterLink></li>
+              <li><RouterLink :to="{ path: '/pictures' }">GALERIE</RouterLink></li>
+              <li><RouterLink :to="{ path: '/login' }">MON COMPTE</RouterLink></li>
+              <li><RouterLink :to="{ path: '/comments' }">ILS EN PARLENT</RouterLink></li>
+              <li><RouterLink :to="{ path: '/experiences' }">DÉCOUVRIR</RouterLink></li>
+              <li><RouterLink :to="{ path: '/infos' }">INFOS PRATIQUES</RouterLink></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="logo">
+          <RouterLink :to="{ path: '/' }"
+            ><img src="../assets/IMGS/logo-large.png" alt="logo"
+          /></RouterLink>
+        </div>
+        <div class="translate">
+          <TranslateArea />
+        </div>
+      </div>
+
+      <div class="container" id="hidden-975">
         <nav>
           <RouterLink :to="{ name: 'booking' }">
             <font-awesome-icon :icon="['far', 'calendar-alt']" />
@@ -33,24 +67,37 @@ const deconnectUser = () => {
         </nav>
 
         <nav>
-          <font-awesome-icon :icon="['far', 'newspaper']" />
-          <p>REVUE DE PRESSE</p>
+          <RouterLink :to="{ path: '/comments' }">
+            <font-awesome-icon :icon="['far', 'newspaper']" />
+            <p classe="width">REVUE DE PRESSE</p>
+          </RouterLink>
         </nav>
 
         <nav>
-          <font-awesome-icon :icon="['far', 'question-circle']" />
-          <p>FAQ</p>
+          <RouterLink :to="{ path: '/infos' }">
+            <font-awesome-icon :icon="['far', 'question-circle']" />
+            <p>INFOS</p>
+          </RouterLink>
         </nav>
-        <div class="connectedUser" v-if="GlobalStore.connectedUser.value">
-          <p>Bonjour</p>
-          <p>{{ GlobalStore.connectedUser.value.username }}</p>
-          <p class="deconnection" @click="deconnectUser">déconnexion</p>
+
+        <div class="connect">
+          <div class="connectedUser" v-if="GlobalStore.connectedUser.value">
+            <div>
+              <p>Bonjour</p>
+              <p class="bold">{{ GlobalStore.connectedUser.value.username }}</p>
+            </div>
+            <font-awesome-icon
+              :icon="['fas', 'sign-out-alt']"
+              class="deconnection"
+              @click="deconnectUser"
+            />
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="header-bottom">
-      <div class="container">
+    <section class="header-bottom" id="header-bottom">
+      <div class="container" id="hidden-975">
         <RouterLink :to="{ path: '/' }">
           <img class="img-logo" src="../assets/IMGS/logo-large.png" alt="logo-large" />
         </RouterLink>
@@ -81,6 +128,9 @@ header {
   width: 100%;
   z-index: 1;
 }
+.bp-975 {
+  display: none;
+}
 
 /* ---header-top-------------------- */
 .header-top {
@@ -103,10 +153,10 @@ header {
   gap: 15px;
   align-items: center;
 }
-.header-top .container > nav:not(:last-child) {
+.header-top .container > nav:not(:last-of-type) {
   border-right: 1px solid var(--grey);
   margin-right: 40px;
-  padding-right: 55px;
+  padding-right: 25px;
   line-height: 18px;
 }
 
@@ -119,11 +169,47 @@ header {
   color: var(--white);
   font-size: 40px;
 }
+
+/* ---user----------- */
+.connect {
+  /* border: 1px solid white; */
+  margin: 5px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.connectedUser {
+  color: black;
+  font-family: system-ui, sans-serif;
+  font-style: italic;
+  background-color: var(--orange);
+  height: 100%;
+  width: 150px;
+  border-radius: 50%;
+  margin: 5px 0;
+  display: flex;
+  gap: 10px;
+  /* flex-direction: column; */
+  justify-content: space-evenly;
+  align-items: center;
+}
+.connectedUser > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.connectedUser p {
+  color: black;
+}
+.bold {
+  font-weight: bold;
+}
 /* --deconnection--- */
 .header-top .deconnection {
   color: white;
-  font-size: 12px;
-  margin-top: 10px;
+  font-size: 18px;
+  /* margin-top: 10px; */
 }
 
 /* ---header-bottom------------------ */
@@ -184,13 +270,5 @@ header {
 .infos h3::selection,
 .infos a::selection {
   color: var(--orange);
-}
-
-/* ---user----------- */
-.connectedUser {
-  color: white;
-}
-.connectedUser svg {
-  font-size: 20px;
 }
 </style>

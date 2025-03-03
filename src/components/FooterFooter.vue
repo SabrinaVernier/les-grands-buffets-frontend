@@ -1,23 +1,27 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+
+const displayAlert = () => {
+  alert(`Mise à jour en cours, la page demandée n'est pas disponible. Veuillez nous en excuser !`)
+}
 </script>
 
 <template>
-  <footer>
-    <section class="footer-top">
+  <footer id="footer">
+    <section class="footer-top" id="footer-top">
       <div class="container">
         <div class="div-border">
-          <h3>NEWSLETTER</h3>
+          <h3>RÉSERVATION</h3>
           <div>
-            <p>Recevez toutes les informations</p>
-            <input type="email" placeholder="Votre email" />
-            <button>S'ABONNER</button>
+            <p>Réservez immédiatement en ligne</p>
+            <!-- <input type="email" placeholder="Votre email" /> -->
+            <button>RÉSERVER</button>
           </div>
         </div>
 
-        <div class="div-border">
+        <div class="div-border div-border2">
           <h3>NOS PARTENAIRES</h3>
-          <span>TOURISME</span>
+          <span @click="displayAlert()">TOURISME</span>
         </div>
 
         <div class="address">
@@ -35,10 +39,12 @@ import { RouterLink } from 'vue-router'
               </RouterLink>
             </nav>
             <nav>
-              <font-awesome-icon :icon="['far', 'question-circle']" />
-              <h4>FOIRE AUX QUESTIONS</h4>
+              <RouterLink :to="{ path: '/infos' }">
+                <font-awesome-icon :icon="['far', 'question-circle']" />
+                <h4>INFORMATIONS</h4>
+              </RouterLink>
             </nav>
-            <nav>
+            <nav @click="displayAlert()">
               <font-awesome-icon :icon="['far', 'handshake']" />
               <h4>RECRUTEMENT</h4>
             </nav>
@@ -68,13 +74,13 @@ import { RouterLink } from 'vue-router'
       </div>
     </section>
 
-    <section class="footer-bottom">
+    <section class="footer-bottom" id="footer-bottom">
       <div class="container">
         <div>
           <p>© 2025 Les Grands Buffets</p>
           <p>Mentions légales</p>
           <p>Plan du site</p>
-          <p>Réalisation AttrapTemps</p>
+          <p>Réalisé par <strong>Sabrina</strong> avec <strong>Vue.js</strong></p>
         </div>
         <div>
           <nav><font-awesome-icon :icon="['fab', 'facebook-f']" /></nav>
@@ -105,7 +111,7 @@ footer {
   border-bottom: 1px solid var(--border-grey);
 }
 .footer-top .container {
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   height: fit-content;
 }
@@ -244,5 +250,9 @@ button {
 }
 .footer-bottom p:not(:last-of-type) {
   border-right: 1px solid var(--border-grey);
+}
+.footer-bottom strong {
+  font-weight: bold;
+  color: var(--orange);
 }
 </style>

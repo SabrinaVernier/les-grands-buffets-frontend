@@ -31,6 +31,7 @@ const displayPictures = (objectInfos) => {
     urlArray.value.push(picture.attributes.url)
     // console.log(urlArray.value)
   }
+
   return urlArray.value
 }
 </script>
@@ -48,7 +49,7 @@ const displayPictures = (objectInfos) => {
       <section class="title">
         <div
           v-for="collection in picturesList"
-          :key="collection"
+          :key="collection.id"
           :class="{
             display:
               collection.attributes.title === 'Leading' ||
@@ -104,28 +105,42 @@ const displayPictures = (objectInfos) => {
   line-height: 21px;
   text-transform: uppercase;
   background-color: var(--orange);
-  padding: 6px 16px;
+  padding: 8px 16px;
   cursor: pointer;
+}
+.title > div:hover,
+.title > div:active {
+  color: var(--orange);
+  background-color: var(--white);
+  border: 3px solid var(--orange);
 }
 .display {
   display: none;
 }
+.title .changeColor {
+  color: var(--orange);
+  background-color: var(--white);
+  border: 3px solid var(--orange);
+}
 
 /* ---section-pictures-------- */
 .pictures {
-  height: 1200px;
+  max-height: 1200px;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
   flex-wrap: wrap;
+  border-bottom: 1px solid var(--light-grey);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .smallHeight {
-  height: 950px;
+  max-height: 950px;
 }
 .bigHeight {
-  height: 1500px;
+  max-height: 1500px;
 }
 .pictures > div {
   width: calc((100% - 20px) / 3);

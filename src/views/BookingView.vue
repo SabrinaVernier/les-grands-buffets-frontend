@@ -7,7 +7,14 @@ import Footer from '@/components/FooterFooter.vue'
 <template>
   <Header />
 
-  <main>
+  <main id="main-booking">
+    <div>
+      <img
+        src="../assets/IMGS/X-les_grands_buffets_la_vitrine_mondiale_de_la_cuisine_dauguste_escoffier.png"
+        alt="Cuisine d'Auguste Escoffier"
+        class="first-img"
+      />
+    </div>
     <div class="container">
       <h1>Réservation</h1>
       <h2>UN MENU BUFFETS A VOLONTE POUR 62,90€</h2>
@@ -69,7 +76,9 @@ import Footer from '@/components/FooterFooter.vue'
 .container {
   padding: 20px 0 80px 0;
 }
-
+.first-img {
+  width: 100%;
+}
 h2 {
   padding: 20px 0px;
   margin: 10px 0px;

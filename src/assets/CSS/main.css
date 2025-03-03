@@ -1,0 +1,122 @@
+@import './base.css';
+
+@import './breakpoint-975.css' (max-width: 975px);
+@import './breakpoint-700.css' (max-width: 700px);
+@import './breakpoint-550.css' (max-width: 550px);
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --white: #ffffff;
+  --light-mustard: #fbe9c2;
+  --mustard: #c89d3e;
+  --orange: #d36700;
+  --orange-button: #d2691e;
+  --green: #25a073;
+  --grey-green: #2f4f4f;
+  --bgd-grey: #f8f9fa;
+  --light-grey: #cececf;
+  --shadow-grey: #ccc;
+  --border-grey: #333;
+  --middle-grey: #a3a2a2;
+  --grey: #666666;
+  --black: black;
+  --header-top-height: 70px;
+
+  --header-bottom-height: 138px;
+  --container-width: 960px;
+  ---container-width-login: 1100px;
+  --container-width-bp-975: 700px;
+  --container-width-bp-700: 550px;
+  --container-width-bp-550: 450px;
+  --container-width-bp-500: 350px;
+}
+
+body {
+  font-family: 'BrandonGrotesqueBold', sans-serif;
+  font-size: 14px;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  /* border: 1px solid green; */
+}
+
+main {
+  margin-top: calc(var(--header-top-height) + var(--header-bottom-height));
+  min-height: 100vh;
+}
+
+h1 {
+  font-family: 'ThirstyRoughRegular', serif;
+  font-size: 58px;
+  line-height: 88px;
+  color: var(--grey);
+  padding: 20px 0px;
+  margin: 15px 0px;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+h2 {
+  font-size: 25px;
+  letter-spacing: 3px;
+  line-height: 50px;
+  color: var(--orange);
+  border-bottom: 1px solid var(--light-grey);
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+input {
+  padding-left: 10px;
+}
+
+/* ---loading-page-------- */
+
+main > div > .loading {
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  padding: 50px;
+  color: var(--orange);
+}
+
+/* ----RESPONSIVE------------------------------ */
+@media (max-width: 975px) {
+  main {
+    margin-top: var(--header-top-height);
+  }
+  .container {
+    min-width: var(--container-width-bp-975);
+    margin: 0 auto;
+    padding: 10px;
+    /* border: 1px solid green; */
+  }
+}
+
+/* --- */
+@media (max-width: 700px) {
+  /* main {
+    margin-top: var(--header-top-height);
+  } */
+  .container {
+    min-width: var(--container-width-bp-700);
+    /* margin: 0 auto;
+    padding: 10px; */
+    /* border: 1px solid green; */
+  }
+  h1 {
+    font-size: 49px;
+    line-height: 73px;
+  }
+}

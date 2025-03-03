@@ -1,22 +1,22 @@
 <script setup></script>
 <template>
   <div class="div-bloc">
-    <div>
+    <!-- <div>
       <font-awesome-icon :icon="['fas', 'search']" class="svg-search" />
-    </div>
+    </div> -->
 
     <div>
       <div>
         <img src="../assets/IMGS/fr.png" alt="drapeau français" />
         <label for="language">FRANÇAIS</label>
 
-        <div>
+        <!-- <div>
           <font-awesome-icon :icon="['fas', 'caret-down']" class="svg-caret" />
-        </div>
-        <select name="language" id="language">
+        </div> -->
+        <!-- <select name="language" id="language">
           <option value="">Anglais</option>
           <option value="12H">Français</option>
-        </select>
+        </select> -->
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@ h1 {
   border-bottom: 1px solid var(--white);
   margin: 0 0 10px 20px;
 }
-.div-bloc > div:nth-of-type(2) {
+.div-bloc > div {
   border-left: 1px solid var(--grey);
   padding: 5px;
 }
@@ -50,12 +50,18 @@ h1 {
   letter-spacing: 3px;
 }
 
-.div-bloc .svg-search {
+/* .div-bloc .svg-search {
   color: var(--orange);
   margin: 10px 20px 0 0;
   font-size: 20px;
-}
+} */
 .div-bloc .svg-caret {
   color: white;
 }
+/* select {
+  display: none;
+}
+select:hover {
+  display: unset;
+} */
 </style>
