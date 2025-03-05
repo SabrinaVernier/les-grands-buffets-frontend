@@ -10,12 +10,12 @@ const displayAlert = () => {
   <footer id="footer">
     <section class="footer-top" id="footer-top">
       <div class="container">
-        <div class="div-border">
+        <div class="div-border div-border1">
           <h3>RÉSERVATION</h3>
           <div>
             <p>Réservez immédiatement en ligne</p>
             <!-- <input type="email" placeholder="Votre email" /> -->
-            <button>RÉSERVER</button>
+            <button><RouterLink :to="{ path: '/booking' }">RÉSERVER</RouterLink></button>
           </div>
         </div>
 
@@ -76,13 +76,19 @@ const displayAlert = () => {
 
     <section class="footer-bottom" id="footer-bottom">
       <div class="container">
-        <div>
+        <div class="first-div">
           <p>© 2025 Les Grands Buffets</p>
           <p>Mentions légales</p>
           <p>Plan du site</p>
-          <p>Réalisé par <strong>Sabrina</strong> avec <strong>Vue.js</strong></p>
+          <p>
+            Réalisation
+            <a href="https://www.linkedin.com/in/sabrina-vernier-6634a9303/" target="_blank"
+              >Sabrina</a
+            >
+            avec <a href="https://vuejs.org/" target="_blank">Vue.js</a>
+          </p>
         </div>
-        <div>
+        <div class="second-div">
           <nav><font-awesome-icon :icon="['fab', 'facebook-f']" /></nav>
           <nav><font-awesome-icon :icon="['fab', 'twitter']" /></nav>
           <nav><font-awesome-icon :icon="['fab', 'google-plus-g']" /></nav>
@@ -105,7 +111,7 @@ footer {
 
 /* ---footer-top----------------- */
 .footer-top {
-  height: 270px;
+  height: var(--footer-top-height);
   padding: 10px 0 0 0;
   margin-bottom: 20px;
   border-bottom: 1px solid var(--border-grey);
@@ -162,9 +168,12 @@ button {
   font-family: 'BrandonGrotesqueBold', sans-serif;
   color: var(--orange);
   background-color: var(--black);
-  border: 1px solid var(--orange);
+  border: 2px solid var(--orange);
   padding: 5px 20px;
   letter-spacing: 1px;
+}
+.div-border1 a {
+  color: var(--orange);
 }
 
 .footer-top .address svg {
@@ -216,7 +225,7 @@ button {
 }
 /* ---footer-bottom------------- */
 .footer-bottom {
-  height: 36px;
+  min-height: var(--footer-bottom-height);
 }
 .footer-bottom .container {
   height: 100%;
@@ -251,7 +260,7 @@ button {
 .footer-bottom p:not(:last-of-type) {
   border-right: 1px solid var(--border-grey);
 }
-.footer-bottom strong {
+.footer-bottom a {
   font-weight: bold;
   color: var(--orange);
 }

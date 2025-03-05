@@ -119,9 +119,9 @@ const handleSubmit = async () => {
 }
 </script>
 <template>
-  <main class="main-form">
+  <main class="main-form" id="main-form">
     <div class="logo">
-      <RouterLink :to="{ name: 'home' }">
+      <RouterLink :to="{ path: '/' }">
         <img src="../assets/IMGS/logo-large.png" alt="logo" />
       </RouterLink>
     </div>
@@ -144,15 +144,19 @@ const handleSubmit = async () => {
 
         <div class="person">
           <p>NOMBRE DE PARTICIPANTS</p>
-          <label for="participant">Adulte</label> :
-          <input type="number" id="participant" v-model="numOfAdult" min="1" value="1" />
-          <label for="participant">Enfant -10ans</label> :
-          <input type="number" id="participant" v-model="numOfChild" min="0" value="0" />
+          <div>
+            <label for="participant">Adulte</label> :
+            <input type="number" id="participant" v-model="numOfAdult" min="1" value="1" />
+          </div>
+          <div>
+            <label for="participant">Enfant (-10ans)</label> :
+            <input type="number" id="participant" v-model="numOfChild" min="0" value="0" />
+          </div>
         </div>
 
         <div>
           <p>HORAIRE SOUHAITÉ</p>
-          <label for="noon">Midi</label>
+          <label for="noon">Midi </label>
           <!-- <input type="radio" id="noon" name="hour" v-model="hour" value="noon" /> -->
           <select name="hour" id="noon" v-model="hour">
             <option value="">Choisir un horaire</option>
@@ -311,8 +315,8 @@ h3 {
 
 /* ---FORM--------------------- */
 form {
-  height: 600px;
-  width: 600px;
+  max-height: 600px;
+  max-width: 600px;
   border: 2px solid var(--mustard);
   padding: 0 0 20px 0;
   border-radius: 10px;

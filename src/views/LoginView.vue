@@ -163,7 +163,7 @@ main img {
 }
 
 form {
-  height: 400px;
+  min-height: 400px;
   width: 790px;
   /* border: 1px solid plum; */
   background: var(--bgd-grey);

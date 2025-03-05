@@ -38,7 +38,7 @@ const displayPictures = (objectInfos) => {
 <template>
   <Header />
 
-  <main v-if="picturesList">
+  <main v-if="picturesList" id="main-pictures">
     <div class="leading-picture">
       <img :src="picturesList[5].attributes.pictures.data[0].attributes.url" alt="image en-tête" />
     </div>

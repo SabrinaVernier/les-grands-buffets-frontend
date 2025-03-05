@@ -31,14 +31,21 @@ onMounted(async () => {
 <template>
   <header>
     <div>
-      <div><img src="../assets/IMGS/logo-large.png" alt="logo" /></div>
+      <div>
+        <RouterLink :to="{ path: '/' }">
+          <img src="../assets/IMGS/logo-large.png" alt="logo" />
+        </RouterLink>
+      </div>
 
       <TranslateArea class="compo-translate" />
     </div>
   </header>
 
   <main id="main-signup">
-    <div v-if="img"><img :src="img.data[0].attributes.url" alt="leading-img" /></div>
+    <div v-if="img">
+      <img :src="img.data[0].attributes.url" alt="leading-img" />
+    </div>
+
     <div class="wrapper">
       <form action="signup" @submit.prevent="handleSubmit">
         <h3>Créez votre compte personnel MON COMPTE :</h3>
@@ -113,7 +120,7 @@ main {
 }
 .wrapper {
   /* border: 1px solid green; */
-  max-height: 500px;
+  min-height: 500px;
   width: var(---container-width-login);
   margin: 0 auto;
   padding: 40px;
@@ -134,7 +141,7 @@ main img {
 }
 
 form {
-  max-height: 430px;
+  min-height: 430px;
   width: 790px;
   /* border: 1px solid plum; */
   background: var(--bgd-grey);

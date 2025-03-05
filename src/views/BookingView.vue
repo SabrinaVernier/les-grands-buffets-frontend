@@ -18,7 +18,7 @@ import Footer from '@/components/FooterFooter.vue'
     <div class="container">
       <h1>Réservation</h1>
       <h2>UN MENU BUFFETS A VOLONTE POUR 62,90€</h2>
-      <h2>LA VITRINE MONDIALE DE LA CUISINE D'AUGUSTE ESCOFFIER !</h2>
+      <h2>LA VITRINE MONDIALE DE LA CUISINE D'AUGUSTE ESCOFFIER</h2>
       <h3>
         <span>LES GRANDS BUFFETS, LA VITRINE MONDIALE DE LA CUISINE D'AUGUSTE ESCOFFIER</span>
       </h3>
@@ -96,6 +96,10 @@ h3 {
   padding: 10px 0px;
   margin-bottom: 10px;
 }
+.container ul {
+  list-style: disc;
+  padding-left: 30px;
+}
 span {
   color: var(--orange);
   font-weight: bold;
@@ -111,6 +115,7 @@ button {
   border: none;
   background-color: var(--orange-button);
   padding: 5px 15px;
+  margin-bottom: 50px;
 }
 
 button:hover {

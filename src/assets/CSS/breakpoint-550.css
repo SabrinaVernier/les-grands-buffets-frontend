@@ -2,24 +2,167 @@
 
 body {
   background-color: lightpink;
+  width: 100%;
 }
 
 /* ------------------------------------- */
+/* ---HEADER------------------ */
+/* ---TOP--- */
+/* -User- */
+#header-top .connect {
+  right: 70px;
+}
+/* -Translate- */
+#header .hidden-550 {
+  display: none;
+}
+#header .flag-language {
+  border: none;
+  margin: 10px;
+  padding: unset;
+}
+#header .flag-language img {
+  height: 15px;
+}
+/* ---FOOTER------------------ */
+#footer {
+  padding: 20px 0;
+  min-width: 100vw;
+}
+#footer .container {
+  flex-direction: column;
+}
+/* ---TOP--- */
 
+#footer-top .container > div {
+  min-height: fit-content;
+  max-width: 100%;
+  padding-bottom: 30px;
+  margin-bottom: 10px;
+}
+#footer-top .container > div:not(:last-of-type) {
+  border-bottom: 1px solid var(--border-grey);
+}
+#footer-top .container .div-border1 {
+  border-right: unset;
+}
+#footer-top h3 {
+  margin-top: 10px;
+}
+
+/* ---BOTTOM--- */
+#footer-bottom .first-div {
+  flex-wrap: wrap;
+}
+#footer-bottom p {
+  flex-shrink: 0;
+}
+#footer-bottom .first-div {
+  justify-content: flex-start;
+  line-height: 18px;
+}
 /* ---HOMEVIEW---------------- */
+/* nothing */
 
 /* ---CELEBRITY-COMMENT--- */
 
+#div-celebrity .img1 {
+  height: 220px;
+}
+#div-celebrity svg {
+  font-size: 30px;
+  color: var(--grey);
+}
+
+#div-celebrity .absolute-name h3 {
+  font-size: 42px;
+}
+#div-celebrity .caroussel-big {
+  height: 380px;
+}
+#div-celebrity .absolute-name {
+  top: 230px;
+  right: 30px;
+}
 /* ---BOOKINGVIEW------------- */
+/* nothing */
 
 /* ---BOOKINGFORM-VIEW-------- */
-
+#main-form {
+  padding: unset;
+}
+#main-form form {
+  min-height: 700px;
+}
+#main-form .display-section {
+  flex-direction: column;
+}
+#main-form .person > div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
 /* ---PAYMENTVIEW------------- */
+/* a faire */
+
 /* ---LOGINVIEW--------------- */
+
+#main-login .div-input input {
+  height: 50px;
+}
+#main-login button {
+  padding: 15px;
+}
 /* ---SIGNUPVIEW-------------- */
+
+#main-signup form {
+  margin: unset;
+}
+#main-signup .div-input input {
+  height: 50px;
+}
+#main-signup button {
+  padding: 15px;
+}
 /* ---AMBIENCESVIEW----------- */
+/* nothing */
+
 /* ---PICTURESVIEW------------ */
+
+#main-pictures .pictures {
+  max-height: fit-content;
+}
+#main-pictures .pictures > div {
+  width: 300px;
+  margin: 0 auto;
+}
+#main-pictures h3 {
+  font-size: 13px;
+}
+#main-pictures .title > div {
+  padding: 10px 16px;
+}
 /* ---COMMENTSVIEW------------ */
+
+#main-comments .div-guides {
+  width: 100%;
+  max-height: fit-content;
+}
+#main-comments .div-guides > div {
+  width: 300px;
+  margin: 0 auto;
+}
 /* ---EXPERIENCESVIEW--------- */
+/* nothing */
+
 /* ---GUINNESSVIEW------------ */
+
+#main-guinness .cheesesList {
+  max-height: 1700px;
+}
+#main-guinness h3 {
+  font-size: 13px;
+}
+
 /* ---INFOSVIEW--------------- */
+/* nothing */

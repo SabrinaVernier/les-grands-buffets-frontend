@@ -21,12 +21,12 @@ const deconnectUser = () => {
     <section class="header-top" id="header-top" :class="{ noBorder: menuListOpen }">
       <div class="bp-975 bp-700">
         <div v-if="!menuListOpen" @click="menuListOpen = true">
-          <font-awesome-icon :icon="['fas', 'bars']" />
+          <font-awesome-icon :icon="['fas', 'bars']" class="menu-svg" />
         </div>
 
         <div v-else>
           <div @click="menuListOpen = false">
-            <font-awesome-icon :icon="['fas', 'times']" />
+            <font-awesome-icon :icon="['fas', 'times']" class="menu-svg" />
           </div>
           <div class="list-display-click">
             <ul>
@@ -46,6 +46,21 @@ const deconnectUser = () => {
             ><img src="../assets/IMGS/logo-large.png" alt="logo"
           /></RouterLink>
         </div>
+
+        <div class="connect">
+          <div class="connectedUser" v-if="GlobalStore.connectedUser.value">
+            <div>
+              <p>Bonjour</p>
+              <p class="bold">{{ GlobalStore.connectedUser.value.username }}</p>
+            </div>
+            <font-awesome-icon
+              :icon="['fas', 'sign-out-alt']"
+              class="deconnection"
+              @click="deconnectUser"
+            />
+          </div>
+        </div>
+
         <div class="translate">
           <TranslateArea />
         </div>
@@ -54,28 +69,28 @@ const deconnectUser = () => {
       <div class="container" id="hidden-975">
         <nav>
           <RouterLink :to="{ name: 'booking' }">
-            <font-awesome-icon :icon="['far', 'calendar-alt']" />
+            <font-awesome-icon :icon="['far', 'calendar-alt']" class="svg-home" />
             <p>RÉSERVER EN LIGNE</p>
           </RouterLink>
         </nav>
 
         <nav>
           <RouterLink :to="{ name: 'login' }">
-            <font-awesome-icon :icon="['far', 'user-circle']" />
+            <font-awesome-icon :icon="['far', 'user-circle']" class="svg-home" />
             <p>MON COMPTE</p>
           </RouterLink>
         </nav>
 
         <nav>
           <RouterLink :to="{ path: '/comments' }">
-            <font-awesome-icon :icon="['far', 'newspaper']" />
+            <font-awesome-icon :icon="['far', 'newspaper']" class="svg-home" />
             <p classe="width">REVUE DE PRESSE</p>
           </RouterLink>
         </nav>
 
         <nav>
           <RouterLink :to="{ path: '/infos' }">
-            <font-awesome-icon :icon="['far', 'question-circle']" />
+            <font-awesome-icon :icon="['far', 'question-circle']" class="svg-home" />
             <p>INFOS</p>
           </RouterLink>
         </nav>
@@ -165,7 +180,7 @@ header {
   letter-spacing: 0.1em;
 }
 
-.header-top svg {
+.header-top .container .svg-home {
   color: var(--white);
   font-size: 40px;
 }
@@ -185,11 +200,10 @@ header {
   background-color: var(--orange);
   height: 100%;
   width: 150px;
-  border-radius: 50%;
+  border-radius: 30px;
+  border: 3px dotted var(--black);
   margin: 5px 0;
   display: flex;
-  gap: 10px;
-  /* flex-direction: column; */
   justify-content: space-evenly;
   align-items: center;
 }

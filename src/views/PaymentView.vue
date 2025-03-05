@@ -26,13 +26,25 @@ const adultAmount = ref('')
 const childAmount = ref('')
 const amount = ref('')
 const errorMessage = ref('')
+const isProcessing = ref(false)
 
 onBeforeMount(async () => {
   const stripe = await stripePromise
 
   const elements = stripe.elements()
 
-  cardElement.value = elements.create('card')
+  cardElement.value = elements.create('card', {
+    style: {
+      base: {
+        fontSize: '16px',
+        color: 'black',
+        '::placeholder': {
+          color: 'rgb(173, 70, 88)',
+        },
+        iconColor: '#efad08',
+      },
+    },
+  })
 
   cardElement.value.mount('#card-element')
 })
@@ -86,6 +98,8 @@ const nameOfRoom = (room) => {
 // ---fonction qui déclenche le paiement-----
 const handlePayment = async () => {
   try {
+    isProcessing.value = true
+
     const stripe = await stripePromise
 
     const { token } = await stripe.createToken(cardElement.value)
@@ -113,6 +127,7 @@ const handlePayment = async () => {
     )
 
     if (response.data.status === 'succeeded') {
+      isProcessing.value = false
       confirmedPayment.value = true
     } else {
       errorMessage.value = "Le paiement n'a pas été honoré. La réservation est annulée"
@@ -131,42 +146,61 @@ const handlePayment = async () => {
     </div>
 
     <div class="container">
-      <h1>Finalisez votre paiement</h1>
+      <div>
+        <h1>Finalisez votre paiement</h1>
 
-      <div v-if="reservationInfos && !confirmedPayment">
-        <p>Nom : {{ reservationInfos.attributes.owner.data.attributes.username }}</p>
-        <p>Email : {{ reservationInfos.attributes.email }}</p>
-        <p>Date choisie : {{ formatDate(reservationInfos.attributes.date) }}</p>
-        <p>Horaire souhaité : {{ reservationInfos.attributes.hour }}</p>
-        <p>Salle ou Jardin choisi : {{ nameOfRoom(reservationInfos.attributes.room) }}</p>
-        <div>
-          <p>Nombre de personnes : {{ reservationInfos.attributes.numberOfPlaces }} au total</p>
-          <p>
-            dont {{ reservationInfos.attributes.adult }}
-            {{ reservationInfos.attributes.adult === 1 ? 'adulte' : 'adultes' }} et
-            {{ reservationInfos.attributes.child }}
-            {{ reservationInfos.attributes.child <= 1 ? 'enfant' : 'enfants' }}
-          </p>
-        </div>
-        <p>Pour un montant de {{ amount }} €</p>
-      </div>
+        <section>
+          <div v-if="reservationInfos && !confirmedPayment" class="infos-booking">
+            <h3>Informations Réservations</h3>
+            <p>
+              <span>Nom :</span> "{{ reservationInfos.attributes.owner.data.attributes.username }}"
+            </p>
+            <p><span>Email :</span> "{{ reservationInfos.attributes.email }}"</p>
+            <p><span>Date choisie :</span> "{{ formatDate(reservationInfos.attributes.date) }}"</p>
+            <p><span>Horaire souhaité :</span> "{{ reservationInfos.attributes.hour }}"</p>
+            <p>
+              <span>Salle ou Jardin choisi :</span>
+              "{{ nameOfRoom(reservationInfos.attributes.room) }}"
+            </p>
+            <div>
+              <p>
+                <span>Nombre de personnes :</span>
+                "{{ reservationInfos.attributes.numberOfPlaces }} au total (dont
+                {{ reservationInfos.attributes.adult }}
+                {{ reservationInfos.attributes.adult === 1 ? 'adulte' : 'adultes' }} et
+                {{ reservationInfos.attributes.child }}
+                {{ reservationInfos.attributes.child <= 1 ? 'enfant' : 'enfants' }})"
+              </p>
+            </div>
 
-      <div v-if="confirmedPayment" class="success-payment">
-        <p class="success-payment">
-          Commande effectuée pour la réservation aux Grands Buffets le
-          {{ formatDate(reservationInfos.attributes.date) }} à
-          {{ reservationInfos.attributes.hour }} pour
-          {{ reservationInfos.attributes.numberOfPlaces }}
-          {{ reservationInfos.attributes.numberOfPlaces === 1 ? 'personne' : 'personnes' }} dans "{{
-            nameOfRoom(reservationInfos.attributes.room)
-          }}"
-        </p>
-      </div>
+            <div class="amount">
+              <p>Pour un montant total de :</p>
+              <p>{{ amount }} €</p>
+            </div>
+          </div>
 
-      <div v-else>
-        <div id="card-element"></div>
-        <button @click="handlePayment">Payer</button>
-        <p>{{ errorMessage }}</p>
+          <div v-if="confirmedPayment" class="success-payment">
+            <p class="first-p">Commande effectuée pour la réservation aux Grands Buffets :</p>
+            <p>
+              => le {{ formatDate(reservationInfos.attributes.date) }} à
+              {{ reservationInfos.attributes.hour }}
+            </p>
+            <p>
+              Pour
+              {{ reservationInfos.attributes.numberOfPlaces }}
+              {{ reservationInfos.attributes.numberOfPlaces === 1 ? 'personne' : 'personnes' }}
+            </p>
+            <p>Dans "{{ nameOfRoom(reservationInfos.attributes.room) }}"</p>
+          </div>
+
+          <div v-else class="infos-card">
+            <h3>Informations Carte</h3>
+            <div id="card-element"></div>
+            <button v-if="!isProcessing" @click="handlePayment">Payer</button>
+            <button class="processing" v-else>Paiement en cours</button>
+            <p>{{ errorMessage }}</p>
+          </div>
+        </section>
       </div>
     </div>
   </main>
@@ -176,38 +210,135 @@ const handlePayment = async () => {
   margin-top: unset;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 20px;
-  color: var(--grey);
   padding-top: 30px;
   background-color: var(--black);
 }
 .container {
   margin-top: 10px;
-  padding: 20px 0;
-  height: calc(100vh - 130px);
-  /* display: flex;
-  justify-content: center; */
+  margin-bottom: 10px;
+  padding: 20px;
+  height: 600px;
   background-color: #fff;
+}
+.container > div {
+  height: calc(100% - 40px);
+  /* border: 1px solid red; */
+  box-shadow: 0 0 4px 2px var(--shadow-grey);
+  border-radius: 10px;
+  background: linear-gradient(
+    -10deg,
+    lightcoral,
+    rgb(247, 161, 161),
+    rgb(249, 193, 193),
+    rgb(253, 217, 217)
+  );
+  border-radius: 20px;
 }
 h1 {
   font-size: 40px;
   margin: 20px 0;
   text-align: center;
 }
+h3 {
+  font-size: 26px;
+  text-align: center;
+  text-decoration: underline;
+  padding-bottom: 20px;
+  color: var(--middle-grey);
+}
+p {
+  color: var(--black);
+  margin-bottom: 10px;
+  font-style: italic;
+}
+section {
+  /* border: 1px solid green; */
+  height: 70%;
+  display: flex;
+  margin: 20px;
+}
+section > div:last-child {
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.infos-booking {
+  padding: 20px;
+  flex: 1;
+}
+span {
+  font-weight: bold;
+  color: var(--pink-payment);
+  font-size: 16px;
+}
+.amount {
+  margin: 10px 50px 50px;
+  padding: 10px;
+  border: 5px double var(--white);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  font-size: 20px;
+}
+.amount > p:first-child {
+  color: var(--pink-payment);
+  font-style: italic;
+  text-decoration: underline;
+}
+.amount > p:last-child {
+  color: var(--white);
+  font-weight: 400;
+  font-size: 30px;
+}
 
 /* ---div payment */
+.infos-card {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.infos-card button {
+  align-self: center;
+  margin: 30px;
+  padding: 8px 30px;
+  font-size: 18px;
+  background-color: var(--pink-payment);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+}
+.infos-card .processing {
+  opacity: 0.5;
+}
 #card-element {
-  border: 1px solid plum;
-  height: 200px;
-  width: 600px;
+  border: 3px groove plum;
+  border-radius: 10px;
+  height: 100px;
+  margin-top: 20px;
+  padding: 20px;
 }
 
 .success-payment {
   font-size: 18px;
   font-weight: 200;
-  color: var(--orange);
+  /* color: var(--pink-payment); */
   border: 1px solid plum;
   height: 300px;
   width: 500px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.first-p {
+  font-size: 18px;
+  font-weight: 200;
+  color: var(--pink-payment);
 }
 </style>

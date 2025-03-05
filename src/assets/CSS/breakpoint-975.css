@@ -8,6 +8,7 @@ body {
 /* ---HEADER----------------- */
 
 /* ---TOP--- */
+
 #header-top .bp-975 {
   height: 100%;
   display: flex;
@@ -16,10 +17,10 @@ body {
   position: relative;
 }
 
-#header-top .bp-975 svg {
+#header-top .bp-975 .menu-svg {
   color: var(--white);
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
   margin-left: 20px;
 }
 
@@ -57,6 +58,27 @@ body {
   color: var(--orange);
 }
 
+/* ---User--- */
+#header-top .connect {
+  position: absolute;
+  top: 0;
+  right: 140px;
+  height: 50px;
+}
+#header-top .connectedUser {
+  width: fit-content;
+  padding: 0 5px 0 10px;
+  border: 3px dotted var(--black);
+  border-radius: 30px;
+}
+#header-top .connectedUser p {
+  font-size: 13px;
+}
+
+#header .deconnection {
+  height: 20px;
+  margin-left: 10px;
+}
 /* ---BOTTOM--- */
 #header-bottom {
   height: 0;
@@ -84,7 +106,7 @@ header #hidden-975 {
   padding-right: unset;
 }
 #footer-top .container .div-border2 {
-  border: unset;
+  border-right: unset;
 }
 
 /* ---HOMEVIEW---------------- */
@@ -127,6 +149,11 @@ header #hidden-975 {
 /* ---CELEBRITY-COMMENT--- */
 #div-celebrity .celebrity-content {
   border-bottom: 15px solid var(--orange);
+}
+#div-celebrity .img1 {
+  /* height: 311px; */
+  width: 100%;
+  object-fit: contain;
 }
 
 /* ---BOOKINGVIEW------------- */
@@ -189,6 +216,8 @@ header #hidden-975 {
 }
 
 /* ---GUINNESSVIEW------------ */
+/* nothing */
+
 /* ---INFOSVIEW--------------- */
 
 #main-infos .first-img {

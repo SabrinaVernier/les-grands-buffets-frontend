@@ -12,8 +12,10 @@
   --white: #ffffff;
   --light-mustard: #fbe9c2;
   --mustard: #c89d3e;
+  --gold: #efad08;
   --orange: #d36700;
   --orange-button: #d2691e;
+  --pink-payment: rgb(173, 70, 88);
   --green: #25a073;
   --grey-green: #2f4f4f;
   --bgd-grey: #f8f9fa;
@@ -24,8 +26,9 @@
   --grey: #666666;
   --black: black;
   --header-top-height: 70px;
-
   --header-bottom-height: 138px;
+  --footer-top-height: 270px;
+  --footer-bottom-height: 36px;
   --container-width: 960px;
   ---container-width-login: 1100px;
   --container-width-bp-975: 700px;
@@ -92,6 +95,7 @@ main > div > .loading {
 }
 
 /* ----RESPONSIVE------------------------------ */
+/* ---975--- */
 @media (max-width: 975px) {
   main {
     margin-top: var(--header-top-height);
@@ -104,11 +108,8 @@ main > div > .loading {
   }
 }
 
-/* --- */
+/* ---700--- */
 @media (max-width: 700px) {
-  /* main {
-    margin-top: var(--header-top-height);
-  } */
   .container {
     min-width: var(--container-width-bp-700);
     /* margin: 0 auto;
@@ -118,5 +119,12 @@ main > div > .loading {
   h1 {
     font-size: 49px;
     line-height: 73px;
+  }
+}
+
+/* ---550--- */
+@media (max-width: 550px) {
+  .container {
+    min-width: var(--container-width-bp-550);
   }
 }

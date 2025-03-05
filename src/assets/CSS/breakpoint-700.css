@@ -18,33 +18,124 @@ body {
   right: 0;
 }
 
+/* ---FOOTER------------------ */
+#footer .footer-bottom .container {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
 /* ---HOMEVIEW---------------- */
 
 /* ---CELEBRITY-COMMENT--- */
 #div-celebrity .celebrity-content {
   padding-bottom: 20px;
 }
-#div-celebrity .img1 {
-  height: 311px;
-}
+/* #div-celebrity .img1 {
+
+  width: 100%;
+  object-fit: contain;
+} */
 #div-celebrity .absolute-name {
+  width: 370px;
   top: 20px;
-  right: -20px;
+  right: 0;
 }
 #div-celebrity .caroussel-small section {
   width: calc(100% / 4);
 }
+#div-celebrity .absolute-name h3 {
+  font-size: 40pxpx;
+}
+#div-celebrity .caroussel-small {
+  align-items: center;
+}
+#div-celebrity svg {
+  font-size: 36px;
+}
 
 /* ---BOOKINGVIEW------------- */
+/* nothing */
 
 /* ---BOOKINGFORM-VIEW-------- */
 
+#main-form form {
+  min-height: 600px;
+  justify-content: space-between;
+}
+#main-form form > div {
+  margin: 0 10px;
+}
 /* ---PAYMENTVIEW------------- */
+/* a faire */
+
 /* ---LOGINVIEW--------------- */
+#main-login .wrapper {
+  max-width: 100vw;
+}
+#main-login img {
+  height: auto;
+}
+#main-login form {
+  width: 100%;
+}
+#main-login form h3 {
+  text-align: center;
+}
+#main-login form .div-button {
+  align-self: stretch;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 20px;
+}
+#main-login form .div-button button {
+  font-size: 16px;
+}
 /* ---SIGNUPVIEW-------------- */
+
+#main-signup .wrapper {
+  max-width: 100vw;
+}
+#main-signup img {
+  height: auto;
+}
+#main-signup form {
+  width: 100%;
+}
+#main-signup form h3 {
+  text-align: center;
+}
+#main-signup form .div-button {
+  align-self: stretch;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 20px;
+}
+#main-signup form .div-button button {
+  font-size: 16px;
+}
 /* ---AMBIENCESVIEW----------- */
+/* nothing */
+
 /* ---PICTURESVIEW------------ */
+
+#main-pictures .title {
+  flex-wrap: wrap;
+}
+#main-pictures .pictures {
+  gap: 15px;
+}
+#main-pictures .pictures > div {
+  width: calc((100% - 15px) / 2);
+}
 /* ---COMMENTSVIEW------------ */
+/* nothing */
+
 /* ---EXPERIENCESVIEW--------- */
+/* nothing */
+
 /* ---GUINNESSVIEW------------ */
+/* nothing */
+
 /* ---INFOSVIEW--------------- */
+/* nothing */

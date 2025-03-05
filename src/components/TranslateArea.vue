@@ -6,9 +6,9 @@
     </div> -->
 
     <div>
-      <div>
+      <div class="flag-language">
         <img src="../assets/IMGS/fr.png" alt="drapeau français" />
-        <label for="language">FRANÇAIS</label>
+        <label for="language" class="hidden-550">FRANÇAIS</label>
 
         <!-- <div>
           <font-awesome-icon :icon="['fas', 'caret-down']" class="svg-caret" />
