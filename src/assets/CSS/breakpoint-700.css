@@ -67,7 +67,15 @@ body {
   margin: 0 10px;
 }
 /* ---PAYMENTVIEW------------- */
-/* a faire */
+#main-payment .container {
+  height: fit-content;
+}
+#main-payment .container > div {
+  padding: 20px;
+}
+#main-payment section {
+  flex-direction: column;
+}
 
 /* ---LOGINVIEW--------------- */
 #main-login .wrapper {

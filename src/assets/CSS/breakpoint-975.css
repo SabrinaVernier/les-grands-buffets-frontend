@@ -166,7 +166,12 @@ header #hidden-975 {
 
 /* ---PAYMENTVIEW------------- */
 
-/* a faire */
+#main-payment .container {
+  height: 700px;
+}
+#main-payment section > div:last-child {
+  height: 80%;
+}
 
 /* ---LOGINVIEW--------------- */
 

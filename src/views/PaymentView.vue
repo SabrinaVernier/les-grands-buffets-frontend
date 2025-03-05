@@ -1,5 +1,6 @@
 <script setup>
 import { onBeforeMount, onMounted, ref, inject } from 'vue'
+import { useRouter } from 'vue-router'
 
 import { loadStripe } from '@stripe/stripe-js'
 
@@ -16,6 +17,8 @@ const confirmedPayment = ref(false)
 
 const GlobalStore = inject('GlobalStore')
 
+const router = useRouter()
+
 const props = defineProps({
   id: String,
 })
@@ -27,6 +30,7 @@ const childAmount = ref('')
 const amount = ref('')
 const errorMessage = ref('')
 const isProcessing = ref(false)
+const canceledBooking = ref(null)
 
 onBeforeMount(async () => {
   const stripe = await stripePromise
@@ -106,6 +110,8 @@ const handlePayment = async () => {
 
     const stripeToken = token.id
 
+    console.log('body requête>>>', stripeToken)
+
     // console.log('body requête>>>', {
     //   token: stripeToken,
     //   amount: amount.value,
@@ -130,15 +136,31 @@ const handlePayment = async () => {
       isProcessing.value = false
       confirmedPayment.value = true
     } else {
+      isProcessing.value = false
+      // annulation de la réservation si erreur de paiement--------
+      const { data } = await axios.delete(`http://localhost:1337/api/reservations/${props.id}`)
+      canceledBooking.value = data
+      console.log('reservation annulée>>>', canceledBooking.value)
+
       errorMessage.value = "Le paiement n'a pas été honoré. La réservation est annulée"
+
+      router.go(-1)
     }
   } catch (error) {
+    errorMessage.value = "Un problème est survenu, votre paiement n'a pas été effectué !"
+    isProcessing.value = false
+
     console.log('error catch handlePayment>>>', error)
   }
 }
+
+const refreshPage = () => {
+  // router.go(0)
+  errorMessage.value = ''
+}
 </script>
 <template>
-  <main class="main-payment">
+  <main class="main-payment" id="main-payment">
     <div class="logo">
       <RouterLink :to="{ name: 'home' }">
         <img src="../assets/IMGS/logo-large.png" alt="logo" />
@@ -151,7 +173,7 @@ const handlePayment = async () => {
 
         <section>
           <div v-if="reservationInfos && !confirmedPayment" class="infos-booking">
-            <h3>Informations Réservations</h3>
+            <h3>Informations Réservation</h3>
             <p>
               <span>Nom :</span> "{{ reservationInfos.attributes.owner.data.attributes.username }}"
             </p>
@@ -165,7 +187,9 @@ const handlePayment = async () => {
             <div>
               <p>
                 <span>Nombre de personnes :</span>
-                "{{ reservationInfos.attributes.numberOfPlaces }} au total (dont
+                "{{ reservationInfos.attributes.numberOfPlaces }}
+                {{ reservationInfos.attributes.numberOfPlaces <= 1 ? 'personne' : 'personnes' }} au
+                total (dont
                 {{ reservationInfos.attributes.adult }}
                 {{ reservationInfos.attributes.adult === 1 ? 'adulte' : 'adultes' }} et
                 {{ reservationInfos.attributes.child }}
@@ -193,12 +217,12 @@ const handlePayment = async () => {
             <p>Dans "{{ nameOfRoom(reservationInfos.attributes.room) }}"</p>
           </div>
 
-          <div v-else class="infos-card">
+          <div v-else class="infos-card" @click="refreshPage">
             <h3>Informations Carte</h3>
             <div id="card-element"></div>
             <button v-if="!isProcessing" @click="handlePayment">Payer</button>
             <button class="processing" v-else>Paiement en cours</button>
-            <p>{{ errorMessage }}</p>
+            <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
           </div>
         </section>
       </div>
@@ -223,7 +247,7 @@ const handlePayment = async () => {
 .container > div {
   height: calc(100% - 40px);
   /* border: 1px solid red; */
-  box-shadow: 0 0 4px 2px var(--shadow-grey);
+  box-shadow: 0 0 6px 6px var(--shadow-grey);
   border-radius: 10px;
   background: linear-gradient(
     -10deg,
@@ -253,7 +277,7 @@ p {
 }
 section {
   /* border: 1px solid green; */
-  height: 70%;
+  height: 60%;
   display: flex;
   margin: 20px;
 }
@@ -340,5 +364,16 @@ span {
   font-size: 18px;
   font-weight: 200;
   color: var(--pink-payment);
+}
+
+/* ---error--- */
+.error-message {
+  background-color: var(--orange-error);
+  color: var(--white);
+  padding: 5px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 </style>

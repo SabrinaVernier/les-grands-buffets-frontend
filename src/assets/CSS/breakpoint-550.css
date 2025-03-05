@@ -103,7 +103,12 @@ body {
   margin-bottom: 5px;
 }
 /* ---PAYMENTVIEW------------- */
-/* a faire */
+
+#main-payment h1 {
+  font-size: 34px;
+  padding: 10px 0;
+  margin: 10px 0;
+}
 
 /* ---LOGINVIEW--------------- */
 

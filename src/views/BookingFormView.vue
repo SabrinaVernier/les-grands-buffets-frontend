@@ -108,9 +108,6 @@ const handleSubmit = async () => {
     const idReservation = data.data.id
     console.log('id reservation>>>', idReservation)
 
-    // alert(
-    //   `Votre réservation a bien été effectuée au nom de ${name.value} pour ${numOfAdult.value} adultes et ${numOfChild.value} enfants le ${formatDate(date.value)} à ${hour.value}, veuillez accéder au formaulaire de paiement en ligne`,
-    // )
     isSubmitting.value = false
     console.log('params >>>', { id: idReservation })
 
