@@ -27,7 +27,7 @@ body {
 /* ---FOOTER------------------ */
 #footer {
   padding: 20px 0;
-  min-width: 100vw;
+  max-width: 100vw;
 }
 #footer .container {
   flex-direction: column;
@@ -62,7 +62,12 @@ body {
   line-height: 18px;
 }
 /* ---HOMEVIEW---------------- */
-/* nothing */
+
+#main-homeview .navigation .guinness {
+  flex-wrap: wrap;
+  height: fit-content;
+  width: 100%;
+}
 
 /* ---CELEBRITY-COMMENT--- */
 
