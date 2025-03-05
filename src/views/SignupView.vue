@@ -1,21 +1,25 @@
+<!-- eslint-disable no-undef -->
 <script setup>
-import { ref, onMounted } from 'vue'
-import { RouterLink } from 'vue-router'
+import { ref, onMounted, inject } from 'vue'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 
 import axios from 'axios'
 
 import Footer from '@/components/FooterFooter.vue'
 import TranslateArea from '@/components/TranslateArea.vue'
 
+const router = useRouter()
+const route = useRoute()
+
+const GlobalStore = inject('GlobalStore')
+// console.log(GlobalStore.connectedUser.value)
+
 let img = ref('')
 
 const email = ref('')
 const password = ref('')
 const name = ref('')
-
-const handleSubmit = () => {
-  console.log('submit')
-}
+const jwt = ref(null)
 
 onMounted(async () => {
   try {
@@ -27,6 +31,36 @@ onMounted(async () => {
     console.log('error onmounted signup>>>', error)
   }
 })
+
+const handleSubmit = async () => {
+  console.log('submit')
+
+  try {
+    const { data } = await axios.post('http://localhost:1337/api/auth/local/register', {
+      email: email.value,
+      username: name.value,
+      password: password.value,
+    })
+
+    // console.log('data login>>>', data.user)
+    jwt.value = data.jwt
+    // console.log('jwt login>>>', jwt.value)
+
+    GlobalStore.updateInfos({
+      username: data.user.username,
+      jwt: data.jwt,
+      id: data.user.id,
+      email: data.user.email,
+    })
+
+    console.log('connectedUser>>>', GlobalStore.connectedUser.value)
+    $cookies.set('loginInfos', GlobalStore.connectedUser.value)
+
+    router.push({ path: route.query.redirect || '/' })
+  } catch (error) {
+    console.log('signup catch error>>>', error)
+  }
+}
 </script>
 <template>
   <header>
@@ -51,7 +85,7 @@ onMounted(async () => {
         <h3>Créez votre compte personnel MON COMPTE :</h3>
 
         <div class="div-input">
-          <label for="name">Email</label>
+          <label for="name">Nom</label>
           <input type="text" id="name" placeholder="votre nom" v-model="name" />
         </div>
 
