@@ -24,7 +24,7 @@ const jwt = ref(null)
 onMounted(async () => {
   try {
     const { data } = await axios.get(
-      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z/api/buffets/6?populate[0]=pictures',
+      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/galleries/6?populate[0]=pictures',
     )
 
     console.log('data onmounted signup', data)

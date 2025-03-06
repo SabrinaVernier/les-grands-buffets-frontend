@@ -13,7 +13,7 @@ const startPage = ref([])
 onMounted(async () => {
   try {
     const { data } = await axios.get(
-      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z/api/galleries?populate[0]=pictures',
+      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/galleries?populate[0]=pictures',
     )
 
     console.log('data pictureview>>>', data.data)
