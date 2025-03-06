@@ -10,7 +10,9 @@ const guideList = ref([])
 
 onMounted(async () => {
   try {
-    const { data } = await axios.get('http://localhost:1337/api/guides?populate[0]=picture')
+    const { data } = await axios.get(
+      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/guides?populate[0]=picture',
+    )
     console.log('data guide>>>', data.data)
 
     guideList.value = data.data

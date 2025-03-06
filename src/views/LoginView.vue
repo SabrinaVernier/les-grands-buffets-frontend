@@ -22,7 +22,9 @@ const jwt = ref(null)
 
 onMounted(async () => {
   try {
-    const { data } = await axios.get('http://localhost:1337/api/buffets/6?populate[0]=pictures')
+    const { data } = await axios.get(
+      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/buffets/6?populate[0]=pictures',
+    )
 
     console.log('data onmounted login', data)
     img.value = data.data.attributes.pictures
@@ -33,10 +35,13 @@ onMounted(async () => {
 
 const handleSubmit = async () => {
   try {
-    const { data } = await axios.post('http://localhost:1337/api/auth/local', {
-      identifier: email.value,
-      password: password.value,
-    })
+    const { data } = await axios.post(
+      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/auth/local',
+      {
+        identifier: email.value,
+        password: password.value,
+      },
+    )
 
     // console.log('data login>>>', data.user)
     jwt.value = data.jwt

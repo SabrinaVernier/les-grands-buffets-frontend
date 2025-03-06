@@ -2,24 +2,13 @@
 import { useCycleList } from '@vueuse/core'
 import { computed } from 'vue'
 
-import { celebrityArray } from '@/utils/celebrity'
+import { celebrityArray, urlPictureCelebrity } from '@/utils/celebrity'
 
 // const celebrityName = ref('')
 // const celebrityJob = ref('')
 
 const cycleList = computed(() => {
-  const { state, prev, next } = useCycleList([
-    'https://www.lesgrandsbuffets.com/sites/lesgrandsbuffets.com/files/styles/full_slider/public/field/home/slide/lgb_header_site_web-1.png?itok=GTYFT8cz',
-    'https://www.lesgrandsbuffets.com/sites/lesgrandsbuffets.com/files/styles/full_slider/public/field/home/slide/xavier_thuret_slider_0.jpg?itok=Bet2P3gr',
-    'https://www.lesgrandsbuffets.com/sites/lesgrandsbuffets.com/files/styles/full_slider/public/field/home/slide/goujon.jpg?itok=X5p4n4iK',
-    'https://www.lesgrandsbuffets.com/sites/lesgrandsbuffets.com/files/styles/full_slider/public/field/home/slide/pierre_richard.jpg?itok=ZmGlZLyK',
-    'https://www.lesgrandsbuffets.com/sites/lesgrandsbuffets.com/files/styles/full_slider/public/field/home/slide/michel_galabru.jpg?itok=2iCt1_2S',
-    'https://www.lesgrandsbuffets.com/sites/lesgrandsbuffets.com/files/styles/full_slider/public/field/home/slide/michel-guerard.jpg?itok=N8XjYusV',
-    'https://www.lesgrandsbuffets.com/sites/lesgrandsbuffets.com/files/styles/full_slider/public/field/home/slide/philippe_lucas_0.jpg?itok=gOiYIqAL',
-    'https://www.lesgrandsbuffets.com/sites/lesgrandsbuffets.com/files/styles/full_slider/public/field/home/slide/baudracco.jpg?itok=AH0TCc9x',
-    'https://www.lesgrandsbuffets.com/sites/lesgrandsbuffets.com/files/styles/full_slider/public/field/home/slide/di-rosa.jpg?itok=avpsnI2e',
-    'https://www.lesgrandsbuffets.com/sites/lesgrandsbuffets.com/files/styles/full_slider/public/field/home/slide/andre_gayraud.jpg?itok=BqZUz_GB',
-  ])
+  const { state, prev, next } = useCycleList(urlPictureCelebrity)
 
   return { state, prev, next }
 })

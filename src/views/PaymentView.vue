@@ -56,7 +56,7 @@ onBeforeMount(async () => {
 onMounted(async () => {
   try {
     const { data } = await axios.get(
-      `http://localhost:1337/api/reservations/${props.id}?populate=*`,
+      `https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/reservations/${props.id}?populate=*`,
     )
 
     reservationInfos.value = data.data
@@ -119,7 +119,7 @@ const handlePayment = async () => {
     // })
 
     const response = await axios.post(
-      'http://localhost:1337/api/reservations/buy',
+      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/reservations/buy',
       {
         token: stripeToken,
         amount: amount.value,
@@ -138,7 +138,9 @@ const handlePayment = async () => {
     } else {
       isProcessing.value = false
       // annulation de la réservation si erreur de paiement--------
-      const { data } = await axios.delete(`http://localhost:1337/api/reservations/${props.id}`)
+      const { data } = await axios.delete(
+        `https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/reservations/${props.id}`,
+      )
       canceledBooking.value = data
       console.log('reservation annulée>>>', canceledBooking.value)
 

@@ -43,7 +43,9 @@ const errorMessage = ref('')
 // ------recherche de l'Id sur la collection BookingDate à la sortie de l'input date---
 const searchDateId = async (selectedDate) => {
   console.log('date input>>>', selectedDate)
-  const { data } = await axios.get('http://localhost:1337/api/booking-dates')
+  const { data } = await axios.get(
+    'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/booking-dates',
+  )
   // console.log('data axios.find>>>', data.data[0].attributes.date)
 
   const arrayOfDates = data.data
@@ -85,7 +87,7 @@ const handleSubmit = async () => {
     return errorMessage.value
   } else {
     const { data } = await axios.post(
-      'http://localhost:1337/api/reservations?populate=*',
+      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/reservations?populate=*',
       {
         data: {
           name: name.value,

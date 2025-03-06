@@ -10,7 +10,9 @@ const roomInfos = ref('')
 
 onMounted(async () => {
   try {
-    const { data } = await axios.get('http://localhost:1337/api/rooms?populate[0]=pictures')
+    const { data } = await axios.get(
+      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/rooms?populate[0]=pictures',
+    )
 
     console.log(data.data)
     roomInfos.value = data.data

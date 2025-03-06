@@ -12,7 +12,9 @@ const startPage = ref([])
 
 onMounted(async () => {
   try {
-    const { data } = await axios.get('http://localhost:1337/api/buffets?populate[0]=pictures')
+    const { data } = await axios.get(
+      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z/api/buffets?populate[0]=pictures',
+    )
 
     console.log('data pictureview>>>', data.data)
     picturesList.value = data.data
