@@ -39,7 +39,7 @@ const handleSubmit = async () => {
 
   try {
     const { data } = await axios.post(
-      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z/api/auth/local/register',
+      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/auth/local/register',
       {
         email: email.value,
         username: name.value,
