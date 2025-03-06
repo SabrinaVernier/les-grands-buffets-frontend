@@ -40,7 +40,7 @@ onMounted(async () => {
 
       <div v-else class="div-guides">
         <div v-for="guide in guideList" :key="guide.id">
-          <img :src="guide.attributes.picture.data[0].attributes.url" alt="image guide" />
+          <img :src="guide.attributes.picture.data.attributes.url" alt="image guide" />
 
           <div>
             <h3>{{ guide.attributes.title }}</h3>
