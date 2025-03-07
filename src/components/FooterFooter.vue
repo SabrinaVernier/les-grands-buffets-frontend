@@ -82,9 +82,7 @@ const displayAlert = () => {
           <p>Plan du site</p>
           <p>
             Réalisation
-            <a href="https://www.linkedin.com/in/sabrina-vernier-6634a9303/" target="_blank"
-              >Sabrina Vernier</a
-            >
+            <a href="https://github.com/SabrinaVernier" target="_blank">Sabrina Vernier</a>
             avec <a href="https://vuejs.org/" target="_blank">Vue.js</a>
           </p>
         </div>
