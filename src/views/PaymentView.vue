@@ -40,7 +40,8 @@ onBeforeMount(async () => {
   cardElement.value = elements.create('card', {
     style: {
       base: {
-        fontSize: '14px',
+        fontSize: '10px',
+        fontFamily: 'Arial, serif',
         color: 'black',
         '::placeholder': {
           color: 'rgb(173, 70, 88)',

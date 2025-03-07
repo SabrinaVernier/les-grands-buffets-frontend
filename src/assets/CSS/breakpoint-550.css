@@ -126,14 +126,23 @@
 }
 
 #div-celebrity .absolute-name h3 {
-  font-size: 42px;
+  font-size: 38px;
+}
+#div-celebrity .absolute-name h4 {
+  font-size: 12px;
 }
 #div-celebrity .caroussel-big {
   height: 380px;
 }
 #div-celebrity .absolute-name {
-  top: 230px;
+  width: fit-content;
+  height: fit-content;
+  top: 220px;
   right: 30px;
+}
+#div-celebrity .caroussel-small-picture p {
+  font-size: 10px;
+  line-height: 12px;
 }
 /* ---BOOKINGVIEW------------- */
 

@@ -9,7 +9,7 @@ import Footer from '@/components/FooterFooter.vue'
 <template>
   <Header />
 
-  <main id="main-homeview main">
+  <main id="main-homeview">
     <div>
       <CelibrityComment />
       <div class="container">
