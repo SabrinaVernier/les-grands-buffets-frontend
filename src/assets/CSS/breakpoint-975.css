@@ -76,7 +76,6 @@
 }
 
 #header .deconnection {
-  height: 20px;
   margin-left: 10px;
 }
 /* ---BOTTOM--- */
@@ -157,9 +156,7 @@ header #hidden-975 {
 }
 
 /* ---BOOKINGVIEW------------- */
-#main-booking .container {
-  padding: 10px;
-}
+/* nothing */
 
 /* ---BOOKINGFORM-VIEW-------- */
 /* nothing */

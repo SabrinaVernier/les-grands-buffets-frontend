@@ -40,7 +40,7 @@ onBeforeMount(async () => {
   cardElement.value = elements.create('card', {
     style: {
       base: {
-        fontSize: '16px',
+        fontSize: '14px',
         color: 'black',
         '::placeholder': {
           color: 'rgb(173, 70, 88)',
@@ -351,7 +351,7 @@ span {
   font-size: 18px;
   font-weight: 200;
   /* color: var(--pink-payment); */
-  border: 1px solid plum;
+  border: 2px solid plum;
   height: 300px;
   width: 500px;
   text-align: center;

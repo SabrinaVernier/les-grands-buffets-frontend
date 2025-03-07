@@ -6,24 +6,57 @@
 } */
 
 /* ------------------------------------- */
-/* ---HEADER------------------ */
-/* ---TOP--- */
-/* -User- */
-#header-top .connect {
-  right: 70px;
+
+#main h2 {
+  padding: 0;
 }
-/* -Translate- */
+/* ---HEADER------------------ */
 #header .hidden-550 {
   display: none;
 }
+/* ---TOP--- */
+/* -User- */
+#header-top .bp-975 .logo img {
+  width: 150px;
+}
+#header-top .bp-975 .menu-svg {
+  color: var(--white);
+  height: 16px;
+  width: 16px;
+  margin-left: 10px;
+}
+#header-top .connect {
+  right: 50px;
+}
+#header-top .bp-550 {
+  display: inline;
+  font-weight: bold;
+}
+#header-top .bp-550 p {
+  font-size: 16px;
+}
+#header-top .connectedUser {
+  height: 40px;
+  width: 40px;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 0 5px 0;
+}
+#header-top .deconnection {
+  height: 10px;
+  margin-left: unset;
+}
+/* -Translate- */
+
 #header .flag-language {
   border: none;
-  margin: 10px;
+  margin: 5px;
   padding: unset;
 }
 #header .flag-language img {
-  height: 15px;
+  height: 12px;
 }
+
 /* ---FOOTER------------------ */
 #footer {
   padding: 20px 0;
@@ -31,6 +64,18 @@
 }
 #footer .container {
   flex-direction: column;
+}
+#footer p {
+  font-size: 12px;
+}
+#footer h3 {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+#footer button {
+  font-size: 12px;
+  padding: 3px 15px;
+  letter-spacing: 0.5px;
 }
 /* ---TOP--- */
 
@@ -41,6 +86,7 @@
   margin-bottom: 10px;
 }
 #footer-top .container > div:not(:last-of-type) {
+  width: 100%;
   border-bottom: 1px solid var(--border-grey);
 }
 #footer-top .container .div-border1 {
@@ -90,14 +136,31 @@
   right: 30px;
 }
 /* ---BOOKINGVIEW------------- */
-/* nothing */
+
+#main-booking .booking-button {
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+#main-booking a {
+  font-size: 16px;
+  line-height: 26px;
+}
+#main-booking .container {
+  padding: 10px;
+}
 
 /* ---BOOKINGFORM-VIEW-------- */
 #main-form {
   padding: unset;
 }
+#main-form .container {
+  padding: 10px;
+}
+#main-form .logo img {
+  width: 100%;
+}
 #main-form form {
-  min-height: 700px;
+  max-height: 800px;
 }
 #main-form .display-section {
   flex-direction: column;
@@ -108,13 +171,44 @@
   margin-bottom: 5px;
 }
 /* ---PAYMENTVIEW------------- */
-
+#main-payment .container {
+  padding: 10px;
+}
+#main-payment .container > div {
+  padding: 0 0 10px 0;
+  height: fit-content;
+}
+#main-payment section {
+  margin: 10px;
+}
 #main-payment h1 {
-  font-size: 34px;
+  font-size: 30px;
+  line-height: 30px;
   padding: 10px 0;
   margin: 10px 0;
 }
-
+#main-payment h3 {
+  font-size: 20px;
+}
+#main-payment span {
+  font-size: 14px;
+}
+#main-payment .infos-booking {
+  padding: unset;
+}
+#main-payment .amount {
+  margin: 20px 0;
+}
+#main-payment .success-payment {
+  max-height: 500px;
+  max-width: 100vw;
+  padding: 10px;
+  gap: 5px;
+  font-size: 14px;
+}
+#main-payment .logo img {
+  width: 100%;
+}
 /* ---LOGINVIEW--------------- */
 
 #main-login .div-input input {

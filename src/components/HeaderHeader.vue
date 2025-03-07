@@ -34,6 +34,7 @@ const deconnectUser = () => {
               <li><RouterLink :to="{ path: '/ambiences' }">RESTAURANT</RouterLink></li>
               <li><RouterLink :to="{ path: '/pictures' }">GALERIE</RouterLink></li>
               <li><RouterLink :to="{ path: '/login' }">MON COMPTE</RouterLink></li>
+              <li><RouterLink :to="{ path: '/booking' }">RÉSERVATION</RouterLink></li>
               <li><RouterLink :to="{ path: '/comments' }">ILS EN PARLENT</RouterLink></li>
               <li><RouterLink :to="{ path: '/experiences' }">DÉCOUVRIR</RouterLink></li>
               <li><RouterLink :to="{ path: '/infos' }">INFOS PRATIQUES</RouterLink></li>
@@ -49,10 +50,15 @@ const deconnectUser = () => {
 
         <div class="connect">
           <div class="connectedUser" v-if="GlobalStore.connectedUser.value">
-            <div>
+            <div class="div-name hidden-550">
               <p>Bonjour</p>
               <p class="bold">{{ GlobalStore.connectedUser.value.username }}</p>
             </div>
+
+            <div class="bp-550">
+              <p>{{ GlobalStore.connectedUser.value.username.charAt(0) }}</p>
+            </div>
+
             <font-awesome-icon
               :icon="['fas', 'sign-out-alt']"
               class="deconnection"
@@ -146,6 +152,9 @@ header {
 .bp-975 {
   display: none;
 }
+.bp-550 {
+  display: none;
+}
 
 /* ---header-top-------------------- */
 .header-top {
@@ -207,7 +216,7 @@ header {
   justify-content: space-evenly;
   align-items: center;
 }
-.connectedUser > div {
+.connectedUser .div-name {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -219,11 +228,11 @@ header {
 .bold {
   font-weight: bold;
 }
+
 /* --deconnection--- */
 .header-top .deconnection {
   color: white;
   font-size: 18px;
-  /* margin-top: 10px; */
 }
 
 /* ---header-bottom------------------ */

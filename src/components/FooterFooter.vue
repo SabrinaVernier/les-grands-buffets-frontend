@@ -83,7 +83,7 @@ const displayAlert = () => {
           <p>
             Réalisation
             <a href="https://www.linkedin.com/in/sabrina-vernier-6634a9303/" target="_blank"
-              >Sabrina</a
+              >Sabrina Vernier</a
             >
             avec <a href="https://vuejs.org/" target="_blank">Vue.js</a>
           </p>
@@ -171,6 +171,9 @@ button {
   border: 2px solid var(--orange);
   padding: 5px 20px;
   letter-spacing: 1px;
+}
+button:hover {
+  background-color: #fff;
 }
 .div-border1 a {
   color: var(--orange);

@@ -16,8 +16,8 @@ const GlobalStore = inject('GlobalStore')
 
 let img = ref('')
 
-const email = ref('sabrina@mail.com')
-const password = ref('azerty')
+const email = ref('')
+const password = ref('')
 const jwt = ref(null)
 
 onMounted(async () => {

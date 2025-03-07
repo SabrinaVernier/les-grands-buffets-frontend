@@ -64,7 +64,7 @@ import Footer from '@/components/FooterFooter.vue'
 
       <p class="italic">Cliquez sur le lien ci-dessous pour réserver en ligne pour un repas.</p>
 
-      <button>
+      <button class="booking-button">
         <RouterLink :to="{ name: 'bookingForm' }">RÉSERVATION EN LIGNE</RouterLink>
       </button>
     </div>
@@ -74,7 +74,7 @@ import Footer from '@/components/FooterFooter.vue'
 </template>
 <style scoped>
 .container {
-  padding: 20px 0 80px 0;
+  padding: 20px 10px 50px 10px;
 }
 .first-img {
   width: 100%;
