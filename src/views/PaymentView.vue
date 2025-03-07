@@ -350,9 +350,6 @@ span {
 
 .success-payment {
   font-size: 18px;
-  font-weight: 200;
-  /* color: var(--pink-payment); */
-  border: 2px solid plum;
   height: 300px;
   width: 500px;
   text-align: center;
@@ -362,6 +359,9 @@ span {
   justify-content: center;
   align-items: center;
   padding: 20px;
+}
+.success-payment p {
+  font-weight: 400;
 }
 .first-p {
   font-size: 18px;
