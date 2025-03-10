@@ -62,8 +62,8 @@ onMounted(async () => {
 
     reservationInfos.value = data.data
     console.log('data onMounted>>>', reservationInfos.value)
-    adultAmount.value = reservationInfos.value.attributes.adult * 62
-    childAmount.value = reservationInfos.value.attributes.child * 31
+    adultAmount.value = reservationInfos.value.attributes.adult * 62.9
+    childAmount.value = reservationInfos.value.attributes.child * 31.4
     amount.value = adultAmount.value + childAmount.value
   } catch (error) {
     console.log('error catch payment>>>', error)
