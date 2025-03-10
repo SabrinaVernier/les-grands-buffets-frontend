@@ -20,6 +20,8 @@ const email = ref('')
 const password = ref('')
 const name = ref('')
 const jwt = ref(null)
+const errorMessage = ref('')
+const isSubmitting = ref(false)
 
 onMounted(async () => {
   try {
@@ -36,34 +38,43 @@ onMounted(async () => {
 
 const handleSubmit = async () => {
   console.log('submit')
+  errorMessage.value = ''
 
-  try {
-    const { data } = await axios.post(
-      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/auth/local/register',
-      {
-        email: email.value,
-        username: name.value,
-        password: password.value,
-      },
-    )
+  if (email.value && password.value && name.value) {
+    isSubmitting.value = true
+    try {
+      const { data } = await axios.post(
+        'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/auth/local/register',
+        {
+          email: email.value,
+          username: name.value,
+          password: password.value,
+        },
+      )
 
-    // console.log('data login>>>', data.user)
-    jwt.value = data.jwt
-    // console.log('jwt login>>>', jwt.value)
+      // console.log('data login>>>', data.user)
+      jwt.value = data.jwt
+      // console.log('jwt login>>>', jwt.value)
 
-    GlobalStore.updateInfos({
-      username: data.user.username,
-      jwt: data.jwt,
-      id: data.user.id,
-      email: data.user.email,
-    })
+      GlobalStore.updateInfos({
+        username: data.user.username,
+        jwt: data.jwt,
+        id: data.user.id,
+        email: data.user.email,
+      })
 
-    console.log('connectedUser>>>', GlobalStore.connectedUser.value)
-    $cookies.set('loginInfos', GlobalStore.connectedUser.value)
+      console.log('connectedUser>>>', GlobalStore.connectedUser.value)
+      $cookies.set('loginInfos', GlobalStore.connectedUser.value)
 
-    router.push({ path: route.query.redirect || '/' })
-  } catch (error) {
-    console.log('signup catch error>>>', error)
+      router.push({ path: route.query.redirect || '/' })
+    } catch (error) {
+      errorMessage.value = '"Une erreur est surnvenue", veuillez essayer à nouveau '
+      console.log('signup catch error>>>', error)
+    }
+  } else {
+    isSubmitting.value = false
+    errorMessage.value = 'Veuillez remplir tous les champs'
+    console.log('signupview - else>>>')
   }
 }
 </script>
@@ -109,11 +120,17 @@ const handleSubmit = async () => {
           />
         </div>
 
-        <div class="div-button">
+        <div v-if="!errorMessage" class="div-button">
           <button class="cancel-button">
             <RouterLink :to="{ path: '/' }">ANNULER</RouterLink>
           </button>
-          <button class="submit-button">CRÉATION COMPTE</button>
+
+          <button v-if="!isSubmitting" class="submit-button">CRÉATION COMPTE</button>
+          <button v-else class="submit-button">Création compte en cours...</button>
+        </div>
+
+        <div v-else>
+          <p class="error-message">{{ errorMessage }}</p>
         </div>
 
         <div class="div-login">
@@ -235,5 +252,11 @@ button {
 }
 .div-login a {
   color: var(--orange);
+}
+
+/* ---error-------------- */
+.error-message {
+  color: var(--orange);
+  font-size: 18px;
 }
 </style>

@@ -19,6 +19,8 @@ let img = ref('')
 const email = ref('')
 const password = ref('')
 const jwt = ref(null)
+const errorMessage = ref('')
+const isSubmitting = ref(false)
 
 onMounted(async () => {
   try {
@@ -34,32 +36,42 @@ onMounted(async () => {
 })
 
 const handleSubmit = async () => {
-  try {
-    const { data } = await axios.post(
-      'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/auth/local',
-      {
-        identifier: email.value,
-        password: password.value,
-      },
-    )
+  errorMessage.value = ''
+  if (email.value && password.value) {
+    isSubmitting.value = true
+    try {
+      const { data } = await axios.post(
+        'https://site--lesgrandsbuffets-backend--hs5g6ynykk8z.code.run/api/auth/local',
+        {
+          identifier: email.value,
+          password: password.value,
+        },
+      )
 
-    // console.log('data login>>>', data.user)
-    jwt.value = data.jwt
-    // console.log('jwt login>>>', jwt.value)
+      // console.log('data login>>>', data.user)
+      jwt.value = data.jwt
+      // console.log('jwt login>>>', jwt.value)
 
-    GlobalStore.updateInfos({
-      username: data.user.username,
-      jwt: data.jwt,
-      id: data.user.id,
-      email: data.user.email,
-    })
+      GlobalStore.updateInfos({
+        username: data.user.username,
+        jwt: data.jwt,
+        id: data.user.id,
+        email: data.user.email,
+      })
 
-    console.log('connectedUser>>>', GlobalStore.connectedUser.value)
-    $cookies.set('loginInfos', GlobalStore.connectedUser.value)
+      console.log('connectedUser>>>', GlobalStore.connectedUser.value)
+      $cookies.set('loginInfos', GlobalStore.connectedUser.value)
 
-    router.push({ path: route.query.redirect || '/' })
-  } catch (error) {
-    console.log('login catch error>>>', error)
+      router.push({ path: route.query.redirect || '/' })
+    } catch (error) {
+      errorMessage.value = '"Identifiant ou mot de passe invalide", veuillez essayer à nouveau '
+
+      console.log('login catch error>>>', error)
+    }
+  } else {
+    isSubmitting.value = false
+    errorMessage.value = 'Veuillez remplir tous les champs'
+    console.log('loginview - else>>>')
   }
 }
 </script>
@@ -84,7 +96,13 @@ const handleSubmit = async () => {
 
         <div class="div-input">
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="votre email" v-model="email" />
+          <input
+            type="email"
+            id="email"
+            placeholder="votre email"
+            v-model="email"
+            @input="((errorMessage = ''), (isSubmitting = false))"
+          />
         </div>
 
         <div class="div-input">
@@ -94,15 +112,23 @@ const handleSubmit = async () => {
             id="password"
             placeholder="votre mot de passe"
             v-model="password"
+            @input="((errorMessage = ''), (isSubmitting = false))"
           />
         </div>
 
-        <div class="div-button">
+        <div v-if="!errorMessage" class="div-button">
           <button class="cancel-button">
             <RouterLink :to="{ path: '/' }">ANNULER</RouterLink>
           </button>
-          <button class="submit-button">CONNEXION</button>
+
+          <button v-if="!isSubmitting" class="submit-button">CONNEXION</button>
+          <button v-else class="submit-button">Connexion en cours...</button>
         </div>
+
+        <div v-else>
+          <p class="error-message">{{ errorMessage }}</p>
+        </div>
+
         <div class="div-signup">
           <p>
             Si vous n'avez pas de compte, créez-en un ici !
@@ -222,5 +248,11 @@ button {
 }
 .div-signup a {
   color: var(--orange);
+}
+
+/* ---error-------------- */
+.error-message {
+  color: var(--orange);
+  font-size: 18px;
 }
 </style>
